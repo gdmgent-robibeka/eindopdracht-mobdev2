@@ -1,12 +1,10 @@
-import { Link } from 'react-router-dom';
 import useFetch from '../../../../core/hooks/useFetch';
-import { route, Routes } from '../../../../core/routing';
 import Spinner from '../../../Design/Spinner';
 import Alert from '../../../Design/Alert';
 import Button from '../../../Design/Button';
 
-const VenuesOverview = () => {
-  const { data: venues, error, refresh, isLoading } = useFetch('/venues');
+const SongsOverview = () => {
+  const { data: songs, error, refresh, isLoading } = useFetch('/songs');
 
   if (isLoading) {
     return <Spinner />;
@@ -23,16 +21,12 @@ const VenuesOverview = () => {
         Refresh
       </Button>
       <ul>
-        {venues.map((venue) => (
-          <li key={venue._id}>
-            <Link to={route(Routes.Venues.Detail, { id: venue._id })}>
-              {venue.name}
-            </Link>
-          </li>
+        {songs.map((song) => (
+          <li key={song._id}>{song.title}</li>
         ))}
       </ul>
     </>
   );
 };
 
-export default VenuesOverview;
+export default SongsOverview;

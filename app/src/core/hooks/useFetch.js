@@ -6,7 +6,7 @@ const useFetch = (url) => {
 
   const fetchData = useCallback(
     (isCurrent = true) => {
-      fetch(url)
+      fetch(`${process.env.REACT_APP_BASE_API}${url}`)
         .then((json) => {
           if (json.status === 404) {
             throw new Error('Not found');
