@@ -1,13 +1,19 @@
+const venues = '/venues';
+const songs = '/songs';
+const penalties = '/penalties';
+
 const Routes = Object.freeze({
   Venues: {
-    Index: '/venues',
+    Index: `${venues}`,
+    Detail: `${venues}/:id`,
+    DetailAddCantus: `${venues}/:id/add`,
   },
   Songs: {
-    Index: '/songs',
+    Index: `${songs}`,
   },
   Penalties: {
-    Index: '/penalties',
-    Detail: '/penalties/:id',
+    Index: `${penalties}`,
+    Detail: `${penalties}/:id`,
   },
 });
 

@@ -1,5 +1,9 @@
+import { useParams } from 'react-router-dom';
+
 const PenaltyDetail = () => {
-  return <h1>Ad Pistum Detail</h1>;
+  const { id } = useParams();
+
+  return <h1>Ad Pistum Detail {id}</h1>;
 };
 
 export default PenaltyDetail;
