@@ -17,6 +17,10 @@ const songSchema = mongoose.Schema({
     type: Boolean,
     required: true,
   },
+  page: {
+    type: Number,
+    required: true,
+  },
 });
 
 const Song = mongoose.model('Song', songSchema);

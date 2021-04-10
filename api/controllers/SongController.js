@@ -13,11 +13,11 @@ class SongController {
 
   getSongs = async (req, res, next) => {
     try {
-      if (req.query.title) {
-        //return res.send(req.query.title);
-        const songs = await Song.find({ title: req.query.title }).exec();
-        res.status(200).json(songs);
-      }
+      // if (req.query.title) {
+      //   //return res.send(req.query.title);
+      //   const songs = await Song.find({ title: req.query.title }).exec();
+      //   res.status(200).json(songs);
+      // }
       const songs = await Song.find().exec();
       res.status(200).json(songs);
     } catch (e) {
@@ -31,7 +31,7 @@ class SongController {
       const song = await Song.findById(id).exec();
 
       if (song) {
-        res.status(200).json(song);
+        return res.status(200).json(song);
       }
 
       res.status(404).json({ error: 'Not found' });
@@ -48,21 +48,23 @@ class SongController {
       if (song) {
         song.overwrite(req.body);
         const s = await song.save();
-        res.status(200).json(s);
+        return res.status(200).json(s);
       }
 
       res.status(404).json({ error: 'Not found' });
-    } catch (e) {}
+    } catch (e) {
+      next(e);
+    }
   };
 
-  deleteSong = async (req, res, next) => {
+  deleteSongById = async (req, res, next) => {
     try {
       const { id } = req.params;
       const song = await Song.findById(id).exec();
 
       if (song) {
         await song.remove();
-        res.status(200).json({});
+        return res.status(200).json({});
       }
 
       res.status(404).json({ error: 'Not found' });
