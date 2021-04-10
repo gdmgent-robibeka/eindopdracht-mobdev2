@@ -16,6 +16,17 @@ const registerRoutes = (app) => {
   app.get('/venues/:id', venueController.getVenueById);
   app.patch('/venues/:id', venueController.updateVenueById);
   app.delete('/venues/:id', venueController.deleteVenueById);
+
+  // Default 404
+  app.use((req, res, next) => {
+    next(new NotFoundError());
+  });
+
+  // Error handler
+  app.use(function (err, req, res, next) {
+    res.status(err.statusCode || 500);
+    res.json(err);
+  });
 };
 
 module.exports = {

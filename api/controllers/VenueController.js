@@ -1,4 +1,6 @@
 const { Venue } = require('../models/Venue');
+const NotFoundError = require('../errors/NotFoundError');
+const ValidationError = require('../errors/ValidationError');
 
 class VenueController {
   createVenue = async (req, res, next) => {
@@ -7,7 +9,7 @@ class VenueController {
       const v = await venue.save();
       res.status(200).json(v);
     } catch (e) {
-      next(e);
+      next(e.errors ? new ValidationError(e) : e);
     }
   };
 
@@ -26,10 +28,10 @@ class VenueController {
       const venue = await Venue.findById(id).exec();
 
       if (venue) {
-        return res.status(200).json(venue);
+        res.status(200).json(venue);
+      } else {
+        next(new NotFoundError());
       }
-
-      res.status(404).json({ error: 'Not Found' });
     } catch (e) {
       next(e);
     }
@@ -43,12 +45,12 @@ class VenueController {
       if (venue) {
         venue.overwrite(req.body);
         const v = await venue.save();
-        return res.status(200).json(v);
+        res.status(200).json(v);
+      } else {
+        next(new NotFoundError());
       }
-
-      res.status(404).json({ error: 'Not Found' });
     } catch (e) {
-      next(e);
+      next(e.errors ? new ValidationError(e) : e);
     }
   };
 
@@ -59,10 +61,10 @@ class VenueController {
 
       if (venue) {
         await venue.remove();
-        return res.status(200).json({});
+        res.status(200).json({});
+      } else {
+        next(new NotFoundError());
       }
-
-      res.status(404).json({ error: 'Not Found' });
     } catch (e) {
       next(e);
     }
