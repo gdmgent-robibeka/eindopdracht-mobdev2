@@ -14,7 +14,7 @@ class MongoClient {
     });
 
     db.once('open', function () {
-      console.log('MongoDB connection succesfull!');
+      console.log('MongoDB connection succesful!');
     });
 
     this.db = db;
