@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 
-const Input = ({ type = 'text', name, value, onChange }) => {
+const Input = ({ type = 'text', name, value, id, onChange }) => {
   return (
     <div className="form-group">
       <input
+        id={id}
         className="form-control"
         type={type}
         name={name}
