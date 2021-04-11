@@ -1,8 +1,10 @@
+const CantusController = require('../controllers/CantusController');
 const SongController = require('../controllers/SongController');
 const VenueController = require('../controllers/VenueController');
 
 const songController = new SongController();
 const venueController = new VenueController();
+const cantusController = new CantusController();
 
 const registerRoutes = (app) => {
   app.post('/songs', songController.createSong);
@@ -16,6 +18,12 @@ const registerRoutes = (app) => {
   app.get('/venues/:id', venueController.getVenueById);
   app.patch('/venues/:id', venueController.updateVenueById);
   app.delete('/venues/:id', venueController.deleteVenueById);
+
+  app.post('/cantus', cantusController.createCantus);
+  app.get('/cantus', cantusController.getCantusses);
+  app.get('/cantus/:id', cantusController.getCantusById);
+  app.patch('/cantus/:id', cantusController.updateCantusById);
+  app.delete('/cantus/:id', cantusController.deleteCantusById);
 
   // Default 404
   app.use((req, res, next) => {
