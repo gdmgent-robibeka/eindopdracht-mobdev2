@@ -16,7 +16,7 @@ const SongsOverview = () => {
 
   return (
     <>
-      <h1>Cantuszalen</h1>
+      <h1>Liederen</h1>
       <Button color="secondary" onClick={() => refresh()}>
         Refresh
       </Button>

@@ -3,10 +3,10 @@ import Button from '../../../../Design/Button';
 import Input from '../../../../Design/Input';
 
 const Cantus = () => {
-  const [groupName, setGroupName] = useState();
+  const [studentUnion, setStudentUnion] = useState();
 
   const handleChange = (e) => {
-    setGroupName(e.target.value);
+    setStudentUnion(e.target.value);
   };
 
   return (
@@ -14,8 +14,8 @@ const Cantus = () => {
       <div className="d-flex">
         <Input
           type="text"
-          value={groupName}
-          name="groupName"
+          value={studentUnion}
+          name="studentUnion"
           onChange={handleChange}
         />
       </div>
