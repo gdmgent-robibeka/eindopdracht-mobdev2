@@ -14,7 +14,7 @@ const AuthContainer = () => {
   return (
     <Switch>
       <Route path={Routes.Login}>
-        <LoginPage />
+        <LoginPage setUser={setUser} />
       </Route>
       <Redirect to={Routes.Login} />
     </Switch>
