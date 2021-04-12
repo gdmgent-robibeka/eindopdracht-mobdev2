@@ -1,6 +1,8 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
+const { ExtractJwt, Strategy } = require('passport-jwt');
 const { User } = require('../../models/User');
+const AuthError = require('../../errors/AuthError');
 
 const localStrategy = new LocalStrategy(
   {
@@ -24,10 +26,48 @@ const localStrategy = new LocalStrategy(
   }
 );
 
-passport.use(localStrategy);
+const jwtOptions = {
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  secretOrKey: process.env.JWT_SECRET,
+};
 
-const authLocal = passport.authenticate('local', { session: false });
+const jwtStrategy = new Strategy(jwtOptions, async (payload, done) => {
+  try {
+    const user = await User.findById(payload._id);
+
+    if (!user) {
+      return done(null, false);
+    }
+
+    return done(null, user);
+  } catch (e) {
+    return done(e, false);
+  }
+});
+
+passport.use('local', localStrategy);
+passport.use('jwt', jwtStrategy);
+
+const passportWithErrorHandling = (strategy) => {
+  return function (req, res, next) {
+    passport.authenticate(strategy, { session: false }, function (err, user) {
+      if (err) {
+        return next(err);
+      }
+      if (!user) {
+        return next(new AuthError());
+      } else {
+        req.user = user;
+        return next();
+      }
+    })(req, res, next);
+  };
+};
+
+const authLocal = passportWithErrorHandling('local');
+const authJwt = passportWithErrorHandling('jwt');
 
 module.exports = {
   authLocal,
+  authJwt,
 };
