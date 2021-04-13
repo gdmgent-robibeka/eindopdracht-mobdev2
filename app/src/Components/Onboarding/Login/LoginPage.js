@@ -1,9 +1,11 @@
-import Container from '../../Design/Container';
 import Button from '../../Design/Button';
 import Styles from './LoginPage.module.scss';
 import { useState } from 'react';
 import Input from '../../Design/Input';
 import * as yup from 'yup';
+import { login } from '../../../core/modules/auth/api';
+import { getValidationErrors } from '../../../core/modules/utils/validation';
+import Alert from '../../Design/Alert';
 
 let schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -16,6 +18,7 @@ const LoginPage = ({ setUser }) => {
     password: '',
   });
   const [errors, setErrors] = useState({});
+  const [error, setError] = useState();
 
   const handleChange = (e) => {
     setData({
@@ -28,59 +31,66 @@ const LoginPage = ({ setUser }) => {
     e.preventDefault();
 
     schema
-      .validate(data)
+      .validate(data, { abortEarly: false })
       .then(() => {
-        fetch(`${process.env.REACT_APP_BASE_API}/login`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        })
-          .then((res) => res.json())
+        login(data)
+          .then((res) => {
+            if (res.status === 200) {
+              return res.json();
+            }
+
+            throw res.json();
+          })
           .then((data) => {
-            // gelukt
             setUser(data);
           })
           .catch((err) => {
-            // mislukt
             console.log(err);
+            setError(err);
           });
       })
       .catch((err) => {
-        console.log(err.errors);
+        setErrors(getValidationErrors(err));
       });
   };
 
   return (
     <div id={Styles['login']}>
+      {error && (
+        <Alert color="danger">{error.message || 'Er ging iets fout'}</Alert>
+      )}
       <div
         id={Styles['login-row']}
         className="row justify-content-center align-items-center"
       >
         <div id={Styles['login-column']} className="col-md-6">
           <div id={Styles['login-box']} className="col-md-12">
-            <form id={Styles['login-form']} onSubmit={handleSubmit}>
+            <form
+              id={Styles['login-form']}
+              onSubmit={handleSubmit}
+              noValidate={true}
+            >
               <h3 className="text-center">Login</h3>
               <div className="form-group">
-                <label htmlFor="email">Username:</label>
-                <br />
                 <Input
                   id="email"
                   type="email"
                   name="email"
+                  label="E-mail"
                   value={data.email}
+                  error={errors.email}
                   onChange={handleChange}
                 />
               </div>
+              <br />
               <div className="form-group">
-                <label htmlFor="password">Password:</label>
-                <br />
                 <Input
                   id="password"
                   type="password"
                   name="password"
+                  label="Wachtwoord"
                   value={data.password}
+                  error={errors.password}
                   onChange={handleChange}
                 />
               </div>
