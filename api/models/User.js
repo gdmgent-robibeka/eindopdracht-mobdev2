@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+const ROLES = {
+  admin: 'admin',
+  user: 'user',
+};
+
 const userSchema = mongoose.Schema(
   {
     email: {
@@ -15,8 +20,8 @@ const userSchema = mongoose.Schema(
     role: {
       type: String,
       required: true,
-      enum: ['user', 'admin'],
-      default: 'user',
+      enum: [ROLES.admin, ROLES.user],
+      default: ROLES.user,
     },
   },
   {
@@ -75,4 +80,5 @@ const User = mongoose.model('User', userSchema);
 module.exports = {
   User,
   userSchema,
+  ROLES,
 };
