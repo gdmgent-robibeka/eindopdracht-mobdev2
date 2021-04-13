@@ -7,6 +7,7 @@ const Routes = Object.freeze({
     Index: `${venues}`,
     Detail: `${venues}/:id`,
     DetailAddCantus: `${venues}/:id/add`,
+    Create: `${venues}/create`,
   },
   Songs: {
     Index: `${songs}`,

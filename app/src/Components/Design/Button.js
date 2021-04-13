@@ -1,8 +1,19 @@
 import PropTypes from 'prop-types';
 
-const Button = ({ children, onClick, color = 'primary', type = 'button' }) => {
+const Button = ({
+  children,
+  onClick,
+  color = 'primary',
+  type = 'button',
+  disabled = false,
+}) => {
   return (
-    <button className={`btn btn-${color}`} onClick={onClick} type={type}>
+    <button
+      className={`btn btn-${color}`}
+      onClick={onClick}
+      type={type}
+      disabled={disabled}
+    >
       {children}
     </button>
   );
@@ -18,6 +29,7 @@ Button.propTypes = {
     'outline-light',
   ]),
   type: PropTypes.oneOf(['button', 'reset', 'submit']),
+  disabled: PropTypes.bool,
 };
 
 export default Button;

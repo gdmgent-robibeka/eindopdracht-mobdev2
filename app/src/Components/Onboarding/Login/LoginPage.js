@@ -5,7 +5,10 @@ import Input from '../../Design/Input';
 import * as yup from 'yup';
 import { login } from '../../../core/modules/auth/api';
 import { getValidationErrors } from '../../../core/modules/utils/validation';
-import Alert from '../../Design/Alert';
+import { handleApiResult } from '../../../core/modules/utils/api';
+import ApiError from '../../../core/error/ApiError';
+import AppError from '../../../core/error/AppError';
+import ErrorAlert from '../../Shared/ErrorAlert';
 
 let schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -34,19 +37,20 @@ const LoginPage = ({ setUser }) => {
       .validate(data, { abortEarly: false })
       .then(() => {
         login(data)
-          .then((res) => {
-            if (res.status === 200) {
-              return res.json();
-            }
-
-            throw res.json();
-          })
+          .then(handleApiResult)
           .then((data) => {
             setUser(data);
           })
           .catch((err) => {
-            console.log(err);
-            setError(err);
+            if (err instanceof ApiError) {
+              if (err.isUnauthorized()) {
+                setError(new AppError('Verkeerde combinatie'));
+              } else {
+                setError(err);
+              }
+            } else {
+              setError(new AppError(err));
+            }
           });
       })
       .catch((err) => {
@@ -56,9 +60,7 @@ const LoginPage = ({ setUser }) => {
 
   return (
     <div id={Styles['login']}>
-      {error && (
-        <Alert color="danger">{error.message || 'Er ging iets fout'}</Alert>
-      )}
+      <ErrorAlert error={error} />
       <div
         id={Styles['login-row']}
         className="row justify-content-center align-items-center"
@@ -70,7 +72,7 @@ const LoginPage = ({ setUser }) => {
               onSubmit={handleSubmit}
               noValidate={true}
             >
-              <h3 className="text-center">Login</h3>
+              <h3 className="text-center">Aanmelden</h3>
               <div className="form-group">
                 <Input
                   id="email"
@@ -96,7 +98,7 @@ const LoginPage = ({ setUser }) => {
               </div>
               <div className="form-group">
                 <br />
-                <Button type="submit">Log in</Button>
+                <Button type="submit">Aanmelden</Button>
               </div>
             </form>
           </div>

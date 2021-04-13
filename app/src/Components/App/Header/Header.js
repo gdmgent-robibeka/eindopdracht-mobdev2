@@ -1,4 +1,4 @@
-import Button from '../../Design/Button';
+import LogoutButton from './LogoutButton';
 
 const Header = () => {
   return (
@@ -8,7 +8,7 @@ const Header = () => {
       </a>
       <ul className="navbar-nav px-3">
         <li className="nav-item text-nowrap">
-          <Button color="outline-light">Afmelden</Button>
+          <LogoutButton />
         </li>
       </ul>
     </header>

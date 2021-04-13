@@ -2,9 +2,10 @@ import useFetch from '../../../../core/hooks/useFetch';
 import Spinner from '../../../Design/Spinner';
 import Alert from '../../../Design/Alert';
 import Button from '../../../Design/Button';
+import { fetchSongs } from '../../../../core/modules/songs/api';
 
 const SongsOverview = () => {
-  const { data: songs, error, refresh, isLoading } = useFetch('/songs');
+  const { data: songs, error, refresh, isLoading } = useFetch(fetchSongs);
 
   if (isLoading) {
     return <Spinner />;

@@ -8,16 +8,22 @@ import LoginPage from '../Onboarding/Login/LoginPage';
 const AuthContext = createContext();
 
 const AuthProvider = () => {
-  const [user, setUser] = useState(getUser);
+  const [auth, setAuth] = useState(getUser);
 
-  const updateUser = (user) => {
+  const updateAuth = (user) => {
     storeUser(user);
-    setUser(user);
+    setAuth(user);
   };
 
-  if (user) {
+  const logout = () => {
+    updateAuth(null);
+  };
+
+  if (auth && auth.user) {
+    const { user, token } = auth;
+
     return (
-      <AuthContext.Provider value={{ user, setUser: updateUser }}>
+      <AuthContext.Provider value={{ user, token, logout }}>
         <App />
       </AuthContext.Provider>
     );
@@ -26,7 +32,7 @@ const AuthProvider = () => {
   return (
     <Switch>
       <Route path={Routes.Login}>
-        <LoginPage setUser={updateUser} />
+        <LoginPage setUser={updateAuth} />
       </Route>
       <Redirect to={Routes.Login} />
     </Switch>

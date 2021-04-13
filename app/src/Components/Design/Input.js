@@ -1,9 +1,19 @@
 import PropTypes from 'prop-types';
 
-const Input = ({ type = 'text', name, value, id, onChange, label, error }) => {
+const Input = ({
+  type = 'text',
+  name,
+  value,
+  id,
+  label,
+  onChange,
+  error,
+  disabled,
+}) => {
   return (
     <div className="form-group">
-      <label htmlFor={id}>{label}</label>
+      {label && <label htmlFor={id}>{label}</label>}
+
       <input
         id={id}
         className={`form-control ${error ? 'is-invalid' : ''}`}
@@ -11,6 +21,7 @@ const Input = ({ type = 'text', name, value, id, onChange, label, error }) => {
         name={name}
         value={value}
         onChange={onChange}
+        disabled={disabled}
       />
       {error && <div className="invalid-feedback">{error}</div>}
     </div>
@@ -21,7 +32,10 @@ Input.propTypes = {
   type: PropTypes.string,
   name: PropTypes.string.isRequired,
   value: PropTypes.string,
+  id: PropTypes.string,
+  label: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default Input;
