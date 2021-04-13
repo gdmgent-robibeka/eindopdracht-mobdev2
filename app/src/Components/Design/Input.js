@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 
+// TODO fix number input
 const Input = ({
   type = 'text',
   name,

@@ -107,7 +107,7 @@ const VenueForm = ({ onSubmit, initialData = {}, disabled }) => {
       />
 
       <Button type="submit" disabled={disabled}>
-        {data._id ? 'Update' : 'Voeg toe'}
+        {data._id ? 'Bewerk' : 'Voeg toe'}
       </Button>
     </form>
   );
