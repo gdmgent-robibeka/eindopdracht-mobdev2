@@ -3,7 +3,7 @@ const { Cantus } = require('./Cantus');
 
 const venueSchema = mongoose.Schema(
   {
-    name: {
+    venueName: {
       type: String,
       required: true,
     },
