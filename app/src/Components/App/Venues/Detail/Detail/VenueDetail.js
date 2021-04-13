@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import AdminContainer from '../../../../Shared/Admin/AdminContainer';
 import { route, Routes } from '../../../../../core/routing';
 import { useVenue } from '../VenueDetailContainer';
 
@@ -8,9 +9,12 @@ const VenueDetail = () => {
   return (
     <>
       <h1>{venue.venueName}</h1>
-      <Link to={route(Routes.Venues.Edit, { id: venue._id })}>
-        Bewerk cantuszaal
-      </Link>
+
+      <AdminContainer>
+        <Link to={route(Routes.Venues.Edit, { id: venue._id })}>
+          Bewerk cantuszaal
+        </Link>
+      </AdminContainer>
     </>
   );
 };

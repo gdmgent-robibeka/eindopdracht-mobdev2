@@ -5,6 +5,7 @@ import Spinner from '../../../Design/Spinner';
 import Alert from '../../../Design/Alert';
 import Button from '../../../Design/Button';
 import { fetchVenues } from '../../../../core/modules/venues/api';
+import AdminContainer from '../../../Shared/Admin/AdminContainer';
 
 const VenuesOverview = () => {
   const { data: venues, error, refresh, isLoading } = useFetch(fetchVenues);
@@ -24,7 +25,10 @@ const VenuesOverview = () => {
         Refresh
       </Button>
 
-      <Link to={Routes.Venues.Create}>Voeg cantuszaal toe</Link>
+      <AdminContainer>
+        <Link to={Routes.Venues.Create}>Voeg cantuszaal toe</Link>
+      </AdminContainer>
+
       <ul>
         {venues.map((venue) => (
           <li key={venue._id}>
