@@ -1,7 +1,7 @@
 import { ROLES } from './constants';
 
 const isAdmin = (user) => {
-  return user.rol === ROLES.admin;
+  return user.role === ROLES.admin;
 };
 
 export { isAdmin };
