@@ -4,14 +4,14 @@ const helmet = require('helmet');
 
 const registerMiddleware = (app) => {
   if (process.env.ENV === 'production') {
-    var corsOptions = {
+    const corsOptions = {
       origin: process.env.APP_URL,
-      optionsSuccessStatus: 200,
+      optionsSuccessStatus: 200, //
     };
     app.use(cors(corsOptions));
+  } else {
+    app.use(cors());
   }
-
-  app.use(cors());
 
   app.use(express.json());
   app.use(
