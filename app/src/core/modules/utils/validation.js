@@ -1,4 +1,4 @@
-const getValidationErrors = (err) => {
+export const getValidationErrors = (err) => {
   return err.inner.reduce(
     (obj, e) => ({
       ...obj,
@@ -8,6 +8,6 @@ const getValidationErrors = (err) => {
   );
 };
 
-module.exports = {
-  getValidationErrors,
-};
+// module.exports = {
+//   getValidationErrors,
+// };
