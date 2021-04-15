@@ -1,5 +1,6 @@
 const express = require('express');
 const CantusController = require('../controllers/CantusController');
+const PenaltyController = require('../controllers/PenaltyController');
 const SongController = require('../controllers/SongController');
 const VenueController = require('../controllers/VenueController');
 const { ROLES } = require('../models/User');
@@ -8,6 +9,7 @@ const { withRole } = require('../services/auth/auth.services');
 const songController = new SongController();
 const venueController = new VenueController();
 const cantusController = new CantusController();
+const penaltyController = new PenaltyController();
 
 const authRouter = express.Router();
 const adminRouter = express.Router();
@@ -32,6 +34,13 @@ authRouter.get('/cantus/:id', cantusController.getCantusById);
 adminRouter.post('/cantus', cantusController.createCantus);
 adminRouter.patch('/cantus/:id', cantusController.updateCantusById);
 adminRouter.delete('/cantus/:id', cantusController.deleteCantusById);
+
+// Penalties
+authRouter.get('/penalties', penaltyController.getPenalties);
+authRouter.get('/penalties/:id', penaltyController.getPenaltyById);
+adminRouter.post('/penalties', penaltyController.createPenalty);
+adminRouter.patch('/penalties/:id', penaltyController.updatePenaltyById);
+adminRouter.delete('/penalties/:id', penaltyController.deletePenaltyById);
 
 authRouter.use(withRole(ROLES.admin), adminRouter);
 

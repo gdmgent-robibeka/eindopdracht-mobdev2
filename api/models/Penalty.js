@@ -1,25 +1,19 @@
 const mongoose = require('mongoose');
 
-const songSchema = mongoose.Schema(
+const penaltySchema = mongoose.Schema(
   {
-    title: {
+    penaltyName: {
       type: String,
       required: true,
     },
-    source: {
-      type: String,
-      required: true,
-    },
-    language: {
-      type: String,
-      required: true,
-    },
-    isOfficial: {
-      type: Boolean,
-      required: true,
-    },
-    codexPage: {
+    difficulty: {
       type: Number,
+      required: true,
+      min: 1,
+      max: 5,
+    },
+    description: {
+      type: String,
       required: true,
     },
     createdAt: {
@@ -38,9 +32,9 @@ const songSchema = mongoose.Schema(
   }
 );
 
-const Song = mongoose.model('Song', songSchema);
+const Penalty = mongoose.model('Penalty', penaltySchema);
 
 module.exports = {
-  Song,
-  songSchema,
+  Penalty,
+  penaltySchema,
 };
