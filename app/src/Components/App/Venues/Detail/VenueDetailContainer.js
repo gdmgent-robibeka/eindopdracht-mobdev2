@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext } from 'react';
 import { Redirect, Route, Switch, useParams } from 'react-router-dom';
 import useFetch from '../../../../core/hooks/useFetch';
-import { fetchVenue } from '../../../../core/modules/venues/api';
+import { fetchVenueById } from '../../../../core/modules/venues/api';
 import Spinner from '../../../Design/Spinner';
 import Alert from '../../../Design/Alert';
 import { Routes } from '../../../../core/routing';
@@ -15,7 +15,7 @@ const VenueDetailContainer = () => {
   const { id } = useParams();
 
   const apiCall = useCallback(() => {
-    return fetchVenue(id);
+    return fetchVenueById(id);
   }, [id]);
 
   const { data: venue, setData, error, isLoading } = useFetch(apiCall);

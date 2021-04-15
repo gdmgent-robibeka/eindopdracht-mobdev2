@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 
-// TODO fix number input
 const Input = ({
   type = 'text',
   name,
@@ -32,7 +31,11 @@ const Input = ({
 Input.propTypes = {
   type: PropTypes.string,
   name: PropTypes.string.isRequired,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+    PropTypes.number,
+  ]),
   id: PropTypes.string,
   label: PropTypes.string,
   onChange: PropTypes.func.isRequired,

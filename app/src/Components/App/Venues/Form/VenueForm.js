@@ -96,7 +96,7 @@ const VenueForm = ({ onSubmit, initialData = {}, disabled }) => {
       />
 
       <Input
-        type="text"
+        type="number"
         name="capacity"
         value={data.capacity}
         id="capacity"

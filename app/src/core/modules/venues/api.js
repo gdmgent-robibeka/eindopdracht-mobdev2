@@ -14,7 +14,7 @@ const fetchVenues = () => (headers) => {
   });
 };
 
-const fetchVenue = (id) => (headers) => {
+const fetchVenueById = (id) => (headers) => {
   return fetch(`${process.env.REACT_APP_BASE_API}/venues/${id}`, {
     headers: createHeaders(headers),
   });
@@ -29,4 +29,4 @@ const updateVenue = (data) => (headers) => {
   });
 };
 
-export { createVenue, fetchVenues, fetchVenue, updateVenue };
+export { createVenue, fetchVenues, fetchVenueById, updateVenue };
