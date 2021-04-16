@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import useFetch from '../../../../core/hooks/useFetch';
 import { fetchPenalties } from '../../../../core/modules/penalties/api';
 import { Routes } from '../../../../core/routing';
 import Alert from '../../../Design/Alert';
-import Button from '../../../Design/Button';
 import Spinner from '../../../Design/Spinner';
 import AdminContainer from '../../../Shared/Admin/AdminContainer';
+import LinkButton from '../../../Shared/Button/LinkButton';
+import PageHeader from '../../../Shared/Header/PageHeader';
 import PenaltyDetail from '../Detail/PenaltyDetail';
 import EditPenalty from '../Edit/EditPenalty';
 
@@ -31,23 +31,23 @@ const PenaltiesOverview = () => {
   }
   return (
     <>
-      <h1>Ad Pistums</h1>
+      <PageHeader title="Ad Pistums">
+        <AdminContainer>
+          <LinkButton to={Routes.Penalties.Create}>
+            Voeg Ad Pistum toe
+          </LinkButton>
+        </AdminContainer>
+      </PageHeader>
 
-      <Button color="secondary" onClick={() => refresh()}>
-        Refresh
-      </Button>
-
-      <AdminContainer>
-        <Link to={Routes.Penalties.Create}>Voeg Ad Pistum toe</Link>
-      </AdminContainer>
-
-      <ul className="d-flex flex-wrap list-unstyled mt-3 card-list">
+      <div className="d-flex flex-wrap mt-3 card-list">
         {penalties.map((penalty) => (
-          <li key={penalty._id}>
-            <PenaltyDetail penalty={penalty} editPenalty={setCurrentPenalty} />
-          </li>
+          <PenaltyDetail
+            key={penalty._id}
+            penalty={penalty}
+            editPenalty={setCurrentPenalty}
+          />
         ))}
-      </ul>
+      </div>
 
       {currentPenalty && (
         <EditPenalty

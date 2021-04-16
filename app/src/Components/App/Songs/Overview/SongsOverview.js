@@ -8,6 +8,7 @@ import SongDetail from '../Detail/Detail/SongDetail';
 import AdminContainer from '../../../Shared/Admin/AdminContainer';
 import EditSong from '../Edit/EditSong';
 import LinkButton from '../../../Shared/Button/LinkButton';
+import PageHeader from '../../../Shared/Header/PageHeader';
 
 const SongsOverview = () => {
   const [currentSong, setCurrentSong] = useState();
@@ -29,19 +30,17 @@ const SongsOverview = () => {
 
   return (
     <>
-      <h1>Liederen</h1>
+      <PageHeader title="Liederen">
+        <AdminContainer>
+          <LinkButton to={Routes.Songs.Create}>Voeg lied toe</LinkButton>
+        </AdminContainer>
+      </PageHeader>
 
-      <AdminContainer>
-        <LinkButton to={Routes.Songs.Create}>Voeg lied toe</LinkButton>
-      </AdminContainer>
-
-      <ul className="d-flex flex-wrap justify-content-between list-unstyled mt-3 card-list">
+      <div className="d-flex flex-wrap justify-content-between mt-3 card-list">
         {songs.map((song) => (
-          <li key={song._id}>
-            <SongDetail song={song} editSong={setCurrentSong} />
-          </li>
+          <SongDetail key={song._id} song={song} editSong={setCurrentSong} />
         ))}
-      </ul>
+      </div>
 
       {currentSong && (
         <EditSong

@@ -3,12 +3,13 @@ import useFetch from '../../../../core/hooks/useFetch';
 import { route, Routes } from '../../../../core/routing';
 import Spinner from '../../../Design/Spinner';
 import Alert from '../../../Design/Alert';
-import Button from '../../../Design/Button';
 import { fetchVenues } from '../../../../core/modules/venues/api';
 import AdminContainer from '../../../Shared/Admin/AdminContainer';
+import PageHeader from '../../../Shared/Header/PageHeader';
+import LinkButton from '../../../Shared/Button/LinkButton';
 
 const VenuesOverview = () => {
-  const { data: venues, error, refresh, isLoading } = useFetch(fetchVenues);
+  const { data: venues, error, isLoading } = useFetch(fetchVenues);
 
   if (isLoading) {
     return <Spinner />;
@@ -20,14 +21,11 @@ const VenuesOverview = () => {
 
   return (
     <>
-      <h1>Cantuszalen</h1>
-      <Button color="secondary" onClick={() => refresh()}>
-        Refresh
-      </Button>
-
-      <AdminContainer>
-        <Link to={Routes.Venues.Create}>Voeg cantuszaal toe</Link>
-      </AdminContainer>
+      <PageHeader title="Cantuszalen">
+        <AdminContainer>
+          <LinkButton to={Routes.Venues.Create}>Voeg cantuszaal toe</LinkButton>
+        </AdminContainer>
+      </PageHeader>
 
       <ul>
         {venues.map((venue) => (

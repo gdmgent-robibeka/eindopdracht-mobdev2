@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import Styles from './Modal.module.scss';
 
 const Modal = ({ children, title, onClose }) => {
   useEffect(() => {
@@ -11,7 +12,7 @@ const Modal = ({ children, title, onClose }) => {
   return (
     <>
       <div className="modal fade show" style={{ display: 'block' }}>
-        <div className="modal-dialog modal-lg">
+        <div className={`${Styles['modal-box']} modal-dialog modal-lg`}>
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title">{title}</h5>
