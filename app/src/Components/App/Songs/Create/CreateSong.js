@@ -3,7 +3,7 @@ import { useHistory } from 'react-router';
 import useAuthApi from '../../../../core/hooks/useAuthApi';
 import { createSong } from '../../../../core/modules/songs/api';
 import { Routes } from '../../../../core/routing';
-import ErrorAlert from '../../../Shared/ErrorAlert';
+import ErrorAlert from '../../../Shared/Alert/ErrorAlert';
 import SongForm from '../Form/SongForm';
 
 const CreateSong = () => {

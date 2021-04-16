@@ -19,6 +19,8 @@ const Routes = Object.freeze({
   Penalties: {
     Index: `${penalties}`,
     Detail: `${penalties}/:id`,
+    Edit: `${penalties}/:id/edit`,
+    Create: `${penalties}/create`,
   },
   Login: '/login',
 });

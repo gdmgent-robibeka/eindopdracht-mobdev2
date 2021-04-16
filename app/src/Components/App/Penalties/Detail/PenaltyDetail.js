@@ -1,9 +1,13 @@
-import { useParams } from 'react-router-dom';
+import Card from '../../../Design/Card';
 
-const PenaltyDetail = () => {
-  const { id } = useParams();
-
-  return <h1>Ad Pistum Detail {id}</h1>;
+const PenaltyDetail = ({ penalty }) => {
+  return (
+    <Card>
+      <h5 className="card-title">{penalty.penaltyName}</h5>
+      <p>Moeilijkheidsgraad: {penalty.difficulty}</p>
+      <p>{penalty.description}</p>
+    </Card>
+  );
 };
 
 export default PenaltyDetail;

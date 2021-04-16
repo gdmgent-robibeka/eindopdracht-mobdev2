@@ -2,7 +2,7 @@ import { useState } from 'react';
 import useAuthApi from '../../../../core/hooks/useAuthApi';
 import VenueForm from '../Form/VenueForm';
 import { createVenue } from '../../../../core/modules/venues/api';
-import ErrorAlert from '../../../Shared/ErrorAlert';
+import ErrorAlert from '../../../Shared/Alert/ErrorAlert';
 import { useHistory } from 'react-router';
 import { Routes } from '../../../../core/routing';
 

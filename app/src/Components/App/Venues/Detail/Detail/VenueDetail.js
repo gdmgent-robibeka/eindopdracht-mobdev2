@@ -1,20 +1,26 @@
-import { Link } from 'react-router-dom';
 import AdminContainer from '../../../../Shared/Admin/AdminContainer';
 import { route, Routes } from '../../../../../core/routing';
 import { useVenue } from '../VenueDetailContainer';
+import LinkButton from '../../../../Shared/Button/LinkButton';
 
 const VenueDetail = () => {
   const { venue } = useVenue();
 
   return (
     <>
-      <h1>{venue.venueName}</h1>
-
-      <AdminContainer>
-        <Link to={route(Routes.Venues.Edit, { id: venue._id })}>
-          Bewerk cantuszaal
-        </Link>
-      </AdminContainer>
+      <div className="row">
+        <div className="col-sm-8">
+          <h1>{venue.venueName}</h1>
+          <p>{venue.fullAddress}</p>
+        </div>
+        <div className="col-sm-4">
+          <AdminContainer>
+            <LinkButton to={route(Routes.Venues.Edit, { id: venue._id })}>
+              Bewerk cantuszaal
+            </LinkButton>
+          </AdminContainer>
+        </div>
+      </div>
     </>
   );
 };

@@ -21,7 +21,7 @@ const SongsOverview = () => {
 
   return (
     <>
-      <h1>Liederen</h1>
+      <h1 className="mt-3">Liederen</h1>
 
       <Button color="secondary" onClick={() => refresh()}>
         Refresh
@@ -31,13 +31,10 @@ const SongsOverview = () => {
         <Link to={Routes.Songs.Create}>Voeg lied toe</Link>
       </AdminContainer>
 
-      <ul>
+      <ul className="d-flex flex-wrap justify-content-between list-unstyled mt-3 card-list">
         {songs.map((song) => (
           <li key={song._id}>
-            <SongDetail />
-            {/* <Link to={(route(Routes.Songs.Detail), { id: songs._id })}>
-              {song.title}
-            </Link> */}
+            <SongDetail song={song} />
           </li>
         ))}
       </ul>

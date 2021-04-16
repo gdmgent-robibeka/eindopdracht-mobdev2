@@ -16,7 +16,7 @@ const defaultData = {
   title: '',
   source: '',
   language: '',
-  isOfficial: true,
+  isOfficial: false,
   codexPage: '',
 };
 

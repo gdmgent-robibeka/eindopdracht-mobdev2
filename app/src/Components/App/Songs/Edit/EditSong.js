@@ -3,7 +3,7 @@ import { useHistory } from 'react-router';
 import useAuthApi from '../../../../core/hooks/useAuthApi';
 import { updateSong } from '../../../../core/modules/songs/api';
 import { route, Routes } from '../../../../core/routing';
-import ErrorAlert from '../../../Shared/ErrorAlert';
+import ErrorAlert from '../../../Shared/Alert/ErrorAlert';
 import { useSong } from '../Detail/SongDetailContainer';
 import SongForm from '../Form/SongForm';
 

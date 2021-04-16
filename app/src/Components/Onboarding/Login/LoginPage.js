@@ -8,7 +8,7 @@ import { getValidationErrors } from '../../../core/modules/utils/validation';
 import { handleApiResult } from '../../../core/modules/utils/api';
 import ApiError from '../../../core/error/ApiError';
 import AppError from '../../../core/error/AppError';
-import ErrorAlert from '../../Shared/ErrorAlert';
+import ErrorAlert from '../../Shared/Alert/ErrorAlert';
 
 let schema = yup.object().shape({
   email: yup.string().email().required(),
