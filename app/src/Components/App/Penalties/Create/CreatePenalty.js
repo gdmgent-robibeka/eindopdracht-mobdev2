@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router';
 import useAuthApi from '../../../../core/hooks/useAuthApi';
-import { updateSong } from '../../../../core/modules/songs/api';
+import { createPenalty } from '../../../../core/modules/penalties/api';
 import { Routes } from '../../../../core/routing';
 import ErrorAlert from '../../../Shared/Alert/ErrorAlert';
-import SongForm from '../Form/SongForm';
+import PenaltyForm from '../Form/PenaltyForm';
 
-const EditSong = ({ song, onUpdate }) => {
+const CreatePenalty = () => {
   const withAuth = useAuthApi();
   const history = useHistory();
   const [isLoading, setIsLoading] = useState();
@@ -14,10 +14,9 @@ const EditSong = ({ song, onUpdate }) => {
 
   const handleSubmit = (data) => {
     setIsLoading(true);
-    withAuth(updateSong(data))
-      .then((data) => {
-        onUpdate(data);
-        history.push(Routes.Songs.Index);
+    withAuth(createPenalty(data))
+      .then(() => {
+        history.push(Routes.Penalties.Index);
       })
       .catch((err) => {
         setError(err);
@@ -27,15 +26,11 @@ const EditSong = ({ song, onUpdate }) => {
 
   return (
     <>
-      <h1>Bewerk lied</h1>
+      <h1>Voeg Ad Pistum toe</h1>
       <ErrorAlert error={error} />
-      <SongForm
-        onSubmit={handleSubmit}
-        initialData={song}
-        disabled={isLoading}
-      />
+      <PenaltyForm onSubmit={handleSubmit} disabled={isLoading} />
     </>
   );
 };
 
-export default EditSong;
+export default CreatePenalty;

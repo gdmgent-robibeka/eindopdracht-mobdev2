@@ -22,7 +22,7 @@ const fetchSongById = (id) => (headers) => {
 
 const updateSong = (data) => (headers) => {
   const { _id } = data;
-  return fetch(`${process.env.REACT_APP_BASE_API}/songs/:${_id}`, {
+  return fetch(`${process.env.REACT_APP_BASE_API}/songs/${_id}`, {
     method: 'PATCH',
     headers: createHeaders(headers),
     body: JSON.stringify(data),

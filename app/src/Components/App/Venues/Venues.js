@@ -1,4 +1,5 @@
 import { Switch, Route, Redirect } from 'react-router-dom';
+import useTitle from '../../../core/hooks/useTitle';
 import { Routes } from '../../../core/routing';
 import AdminRoute from '../../Shared/Admin/AdminRoute';
 import CreateVenue from './Create/CreateVenue';
@@ -6,6 +7,8 @@ import VenueDetailContainer from './Detail/VenueDetailContainer';
 import VenuesOverview from './Overview/VenuesOverview';
 
 const Venues = () => {
+  useTitle('Cantuszalen');
+
   return (
     <Switch>
       <AdminRoute path={Routes.Venues.Create}>

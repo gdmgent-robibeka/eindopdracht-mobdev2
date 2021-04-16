@@ -1,10 +1,9 @@
 import ReactPlayer from 'react-player/soundcloud';
-import { Link } from 'react-router-dom';
-import { route, Routes } from '../../../../../core/routing';
+import Button from '../../../../Design/Button';
 import Card from '../../../../Design/Card';
 import AdminContainer from '../../../../Shared/Admin/AdminContainer';
 
-const SongDetail = ({ song }) => {
+const SongDetail = ({ song, editSong }) => {
   return (
     <Card>
       <h5 className="card-title">
@@ -19,9 +18,7 @@ const SongDetail = ({ song }) => {
       />
       <p>Pagina in de codex: {song.codexPage}</p>
       <AdminContainer>
-        <Link to={(route(Routes.Songs.Edit), { id: song._id })}>
-          Bewerk lied
-        </Link>
+        <Button onClick={() => editSong(song)}>Bewerk lied</Button>
       </AdminContainer>
     </Card>
   );
