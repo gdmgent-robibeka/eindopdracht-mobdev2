@@ -4,9 +4,10 @@ import useAuthApi from '../../../../core/hooks/useAuthApi';
 import { updatePenalty } from '../../../../core/modules/penalties/api';
 import { Routes } from '../../../../core/routing';
 import ErrorAlert from '../../../Shared/Alert/ErrorAlert';
+import Modal from '../../../Shared/Modal/Modal';
 import PenaltyForm from '../Form/PenaltyForm';
 
-const EditPenalty = ({ penalty, onUpdate }) => {
+const EditPenalty = ({ penalty, onUpdate, onClose }) => {
   const withAuth = useAuthApi();
   const history = useHistory();
   const [isLoading, setIsLoading] = useState();
@@ -26,15 +27,14 @@ const EditPenalty = ({ penalty, onUpdate }) => {
   };
 
   return (
-    <>
-      <h1>Bewerk lied</h1>
+    <Modal title="Bewerk Ad Pistum" onClose={onClose}>
       <ErrorAlert error={error} />
       <PenaltyForm
         onSubmit={handleSubmit}
         initialData={penalty}
         disabled={isLoading}
       />
-    </>
+    </Modal>
   );
 };
 

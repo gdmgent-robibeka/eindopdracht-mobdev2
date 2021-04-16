@@ -50,7 +50,11 @@ const PenaltiesOverview = () => {
       </ul>
 
       {currentPenalty && (
-        <EditPenalty penalty={currentPenalty} onUpdate={handlePenaltyUpdate} />
+        <EditPenalty
+          penalty={currentPenalty}
+          onUpdate={handlePenaltyUpdate}
+          onClose={() => setCurrentPenalty(null)}
+        />
       )}
     </>
   );

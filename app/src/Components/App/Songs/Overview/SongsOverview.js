@@ -44,7 +44,11 @@ const SongsOverview = () => {
       </ul>
 
       {currentSong && (
-        <EditSong song={currentSong} onUpdate={handleSongUpdate} />
+        <EditSong
+          song={currentSong}
+          onUpdate={handleSongUpdate}
+          onClose={() => setCurrentSong(null)}
+        />
       )}
     </>
   );
