@@ -1,5 +1,5 @@
 import Button from '../../Design/Button';
-import Styles from './RegisterPage.module.scss';
+import Styles from '../Onboarding.module.scss';
 import { useState } from 'react';
 import Input from '../../Design/Input';
 import * as yup from 'yup';
@@ -62,17 +62,17 @@ const RegisterPage = ({ setUser }) => {
   };
 
   return (
-    <div id={Styles['login']}>
+    <div id={Styles['onboarding']}>
       <ErrorAlert error={error} />
 
       <div
-        id={Styles['login-row']}
+        id={Styles['onboarding-row']}
         className="row justify-content-center align-items-center"
       >
-        <div id={Styles['login-column']} className="col-md-6">
-          <div id={Styles['register-box']} className="col-md-12">
+        <div id={Styles['onboarding-column']} className="col-md-6">
+          <div id={Styles['onboarding-box']} className="col-md-12">
             <form
-              id={Styles['login-form']}
+              id={Styles['onboarding-form']}
               onSubmit={handleSubmit}
               noValidate={true}
             >
@@ -109,7 +109,7 @@ const RegisterPage = ({ setUser }) => {
 
               <Button type="submit">Register</Button>
             </form>
-            <p id={Styles['register-link']}>
+            <p id={Styles['onboarding-link']}>
               Already have an account?{' '}
               <Link to={Routes.Login}>Log in here</Link>
             </p>
