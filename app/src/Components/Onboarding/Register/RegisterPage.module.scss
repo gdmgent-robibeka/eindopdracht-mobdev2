@@ -6,17 +6,17 @@
   );
   height: 100vh;
 }
-#login #login-row #login-column #login-box {
+#login #login-row #login-column #register-box {
   margin-top: 10rem;
   max-width: 600px;
-  height: 360px;
+  height: 450px;
   background-color: #faf1ec;
   margin-left: 3rem;
 }
-#login #login-row #login-column #login-box #login-form {
+#login #login-row #login-column #register-box #login-form {
   padding: 20px;
 }
-#login #login-row #login-column #login-box #register-link {
+#login #login-row #login-column #register-box #register-link {
   padding: 20px;
   margin-top: -70px;
   margin-left: 100px;

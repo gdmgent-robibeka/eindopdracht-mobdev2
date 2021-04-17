@@ -13,7 +13,7 @@ const SongDetail = ({ song, editSong, deleteSong }) => {
       <ReactPlayer url={song.source} width="525px" height="200px" />
       <p>Page in the codex: {song.codexPage}</p>
       <AdminContainer>
-        <Button onClick={() => editSong(song)}>Edit song</Button>
+        <Button onClick={() => editSong(song)}>Edit</Button>
       </AdminContainer>
       <AdminContainer>
         <Button onClick={() => deleteSong(song)} color="danger">

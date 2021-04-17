@@ -8,4 +8,12 @@ const login = (data) => {
   });
 };
 
-export { login };
+const register = (data) => {
+  return fetch(`${process.env.REACT_APP_BASE_API}/register`, {
+    method: 'POST',
+    headers: createHeaders(),
+    body: JSON.stringify(data),
+  });
+};
+
+export { login, register };

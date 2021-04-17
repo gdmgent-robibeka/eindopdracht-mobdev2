@@ -4,6 +4,7 @@ import { getUser, storeUser } from '../../core/modules/storage';
 import { Routes } from '../../core/routing';
 import App from '../App/App';
 import LoginPage from '../Onboarding/Login/LoginPage';
+import RegisterPage from '../Onboarding/Register/RegisterPage';
 
 const AuthContext = createContext();
 
@@ -33,6 +34,9 @@ const AuthProvider = () => {
     <Switch>
       <Route path={Routes.Login}>
         <LoginPage setUser={updateAuth} />
+      </Route>
+      <Route path={Routes.Register}>
+        <RegisterPage setUser={updateAuth} />
       </Route>
       <Redirect to={Routes.Login} />
     </Switch>

@@ -1,5 +1,13 @@
 import { createHeaders } from '../utils/api';
 
+const createUser = (data) => (headers) => {
+  return fetch(`${process.env.REACT_APP_BASE_API}/register`, {
+    method: 'POST',
+    headers: createHeaders(headers),
+    body: JSON.stringify(data),
+  });
+};
+
 const fetchUsers = () => (headers) => {
   return fetch(`${process.env.REACT_APP_BASE_API}/users`, {
     headers: createHeaders(headers),
@@ -23,4 +31,4 @@ const deleteUser = (data) => (headers) => {
   });
 };
 
-export { fetchUsers, editUser, deleteUser };
+export { createUser, fetchUsers, editUser, deleteUser };

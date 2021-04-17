@@ -19,11 +19,12 @@ const Routes = Object.freeze({
     Index: `${penalties}`,
     Create: `${penalties}/create`,
   },
-  Login: '/login',
   Users: {
     Index: `${users}`,
     Create: `${users}/create`,
   },
+  Login: '/login',
+  Register: '/register',
 });
 
 const route = (path, options = {}) => {

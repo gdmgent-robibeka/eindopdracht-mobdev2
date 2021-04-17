@@ -1,9 +1,9 @@
 import Button from '../../Design/Button';
-import Styles from './LoginPage.module.scss';
+import Styles from './RegisterPage.module.scss';
 import { useState } from 'react';
 import Input from '../../Design/Input';
 import * as yup from 'yup';
-import { login } from '../../../core/modules/auth/api';
+import { register } from '../../../core/modules/auth/api';
 import { getValidationErrors } from '../../../core/modules/utils/validation';
 import { handleApiResult } from '../../../core/modules/utils/api';
 import ApiError from '../../../core/error/ApiError';
@@ -14,14 +14,16 @@ import { Link } from 'react-router-dom';
 import { Routes } from '../../../core/routing';
 
 let schema = yup.object().shape({
+  userName: yup.string().required(),
   email: yup.string().email().required(),
   password: yup.string().required(),
 });
 
-const LoginPage = ({ setUser }) => {
-  useTitle('Login');
+const RegisterPage = ({ setUser }) => {
+  useTitle('Register');
 
   const [data, setData] = useState({
+    userName: '',
     email: '',
     password: '',
   });
@@ -41,18 +43,14 @@ const LoginPage = ({ setUser }) => {
     schema
       .validate(data, { abortEarly: false })
       .then(() => {
-        login(data)
+        register(data)
           .then(handleApiResult)
           .then((data) => {
             setUser(data);
           })
           .catch((err) => {
             if (err instanceof ApiError) {
-              if (err.isUnauthorized()) {
-                setError(new AppError('Wrong combination'));
-              } else {
-                setError(err);
-              }
+              setError(err);
             } else {
               setError(new AppError(err));
             }
@@ -72,43 +70,48 @@ const LoginPage = ({ setUser }) => {
         className="row justify-content-center align-items-center"
       >
         <div id={Styles['login-column']} className="col-md-6">
-          <div id={Styles['login-box']} className="col-md-12">
+          <div id={Styles['register-box']} className="col-md-12">
             <form
               id={Styles['login-form']}
               onSubmit={handleSubmit}
               noValidate={true}
             >
-              <h3 className="text-center">Log in</h3>
-              <div className="form-group">
-                <Input
-                  id="email"
-                  type="email"
-                  name="email"
-                  label="Email"
-                  value={data.email}
-                  error={errors.email}
-                  onChange={handleChange}
-                />
-              </div>
+              <h3 className="text-center">Register</h3>
+              <Input
+                id="userName"
+                type="userName"
+                name="userName"
+                label="Name"
+                value={data.userName}
+                error={errors.userName}
+                onChange={handleChange}
+              />
 
-              <div className="form-group">
-                <Input
-                  id="password"
-                  type="password"
-                  name="password"
-                  label="Password"
-                  value={data.password}
-                  error={errors.password}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="form-group">
-                <Button type="submit">Log in</Button>
-              </div>
+              <Input
+                id="email"
+                type="email"
+                name="email"
+                label="Email"
+                value={data.email}
+                error={errors.email}
+                onChange={handleChange}
+              />
+
+              <Input
+                id="password"
+                type="password"
+                name="password"
+                label="Password"
+                value={data.password}
+                error={errors.password}
+                onChange={handleChange}
+              />
+
+              <Button type="submit">Register</Button>
             </form>
             <p id={Styles['register-link']}>
-              Don't have an account yet?{' '}
-              <Link to={Routes.Register}>Register here</Link>
+              Already have an account?{' '}
+              <Link to={Routes.Login}>Log in here</Link>
             </p>
           </div>
         </div>
@@ -117,4 +120,4 @@ const LoginPage = ({ setUser }) => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
