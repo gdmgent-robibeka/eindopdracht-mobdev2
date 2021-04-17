@@ -14,7 +14,7 @@ const fetchSongs = () => (headers) => {
   });
 };
 
-const updateSong = (data) => (headers) => {
+const editSong = (data) => (headers) => {
   const { _id } = data;
   return fetch(`${process.env.REACT_APP_BASE_API}/songs/${_id}`, {
     method: 'PATCH',
@@ -31,4 +31,4 @@ const deleteSong = (data) => (headers) => {
   });
 };
 
-export { fetchSongs, createSong, updateSong, deleteSong };
+export { fetchSongs, createSong, editSong, deleteSong };

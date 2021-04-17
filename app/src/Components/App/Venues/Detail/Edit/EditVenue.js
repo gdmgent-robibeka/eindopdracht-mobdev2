@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import useAuthApi from '../../../../../core/hooks/useAuthApi';
 import VenueForm from '../../Form/VenueForm';
-import { updateVenue } from '../../../../../core/modules/venues/api';
+import { editVenue } from '../../../../../core/modules/venues/api';
 import ErrorAlert from '../../../../Shared/Alert/ErrorAlert';
 import { useHistory } from 'react-router';
 import { route, Routes } from '../../../../../core/routing';
@@ -17,7 +17,7 @@ const EditVenue = ({ onUpdate }) => {
 
   const handleSubmit = (data) => {
     setIsLoading(true);
-    withAuth(updateVenue(data))
+    withAuth(editVenue(data))
       .then((data) => {
         onUpdate(data);
         history.push(route(Routes.Venues.Detail, { id: data._id }));

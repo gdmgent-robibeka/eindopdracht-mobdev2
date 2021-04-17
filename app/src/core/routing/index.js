@@ -1,6 +1,7 @@
 const venues = '/venues';
 const songs = '/songs';
 const penalties = '/penalties';
+const users = '/users';
 
 const Routes = Object.freeze({
   Venues: {
@@ -12,15 +13,17 @@ const Routes = Object.freeze({
   },
   Songs: {
     Index: `${songs}`,
-    Edit: `${songs}/:id/edit`,
     Create: `${songs}/create`,
   },
   Penalties: {
     Index: `${penalties}`,
-    Edit: `${penalties}/:id/edit`,
     Create: `${penalties}/create`,
   },
   Login: '/login',
+  Users: {
+    Index: `${users}`,
+    Create: `${users}/create`,
+  },
 });
 
 const route = (path, options = {}) => {

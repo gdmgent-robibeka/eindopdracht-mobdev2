@@ -64,6 +64,7 @@ const LoginPage = ({ setUser }) => {
   return (
     <div id={Styles['login']}>
       <ErrorAlert error={error} />
+
       <div
         id={Styles['login-row']}
         className="row justify-content-center align-items-center"

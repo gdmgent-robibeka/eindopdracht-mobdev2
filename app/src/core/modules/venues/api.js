@@ -20,7 +20,7 @@ const fetchVenueById = (id) => (headers) => {
   });
 };
 
-const updateVenue = (data) => (headers) => {
+const editVenue = (data) => (headers) => {
   const { _id } = data;
   return fetch(`${process.env.REACT_APP_BASE_API}/venues/${_id}`, {
     method: 'PATCH',
@@ -37,4 +37,4 @@ const deleteVenue = (data) => (headers) => {
   });
 };
 
-export { createVenue, fetchVenues, fetchVenueById, updateVenue, deleteVenue };
+export { createVenue, fetchVenues, fetchVenueById, editVenue, deleteVenue };

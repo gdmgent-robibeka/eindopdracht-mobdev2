@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router';
 import useAuthApi from '../../../../core/hooks/useAuthApi';
-import { editPenalty } from '../../../../core/modules/penalties/api';
+import { editUser } from '../../../../core/modules/users/api';
 import { Routes } from '../../../../core/routing';
 import ErrorAlert from '../../../Shared/Alert/ErrorAlert';
 import Modal from '../../../Shared/Modal/Modal';
-import PenaltyForm from '../Form/PenaltyForm';
+import UserForm from '../Form/UserForm';
 
-const EditPenalty = ({ penalty, onEdit, onClose }) => {
+const EditUser = ({ user, onEdit, onClose }) => {
   const withAuth = useAuthApi();
   const history = useHistory();
   const [isLoading, setIsLoading] = useState();
@@ -15,10 +15,10 @@ const EditPenalty = ({ penalty, onEdit, onClose }) => {
 
   const handleSubmit = (data) => {
     setIsLoading(true);
-    withAuth(editPenalty(data))
+    withAuth(editUser(data))
       .then((data) => {
         onEdit(data);
-        history.push(Routes.Penalties.Index);
+        history.push(Routes.Users.Index);
       })
       .catch((err) => {
         setError(err);
@@ -27,15 +27,15 @@ const EditPenalty = ({ penalty, onEdit, onClose }) => {
   };
 
   return (
-    <Modal title="Edit penalty" onClose={onClose}>
+    <Modal title="Edit user" onClose={onClose}>
       <ErrorAlert error={error} />
-      <PenaltyForm
+      <UserForm
         onSubmit={handleSubmit}
-        initialData={penalty}
+        initialData={user}
         disabled={isLoading}
       />
     </Modal>
   );
 };
 
-export default EditPenalty;
+export default EditUser;

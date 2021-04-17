@@ -1,18 +1,27 @@
 import { Link } from 'react-router-dom';
 import { Routes } from '../../../core/routing';
+import AdminContainer from '../../Shared/Admin/AdminContainer';
 
 const items = [
   {
     label: 'Venues',
     route: Routes.Venues.Index,
+    admin: false,
   },
   {
     label: 'Songs',
     route: Routes.Songs.Index,
+    admin: false,
   },
   {
     label: 'Penalties',
     route: Routes.Penalties.Index,
+    admin: false,
+  },
+  {
+    label: 'Users',
+    route: Routes.Users.Index,
+    admin: true,
   },
 ];
 
@@ -23,9 +32,17 @@ const Sidebar = () => {
         <ul className="nav flex-column">
           {items.map((item) => (
             <li className="nav-item" key={item.route}>
-              <Link className="nav-link" to={item.route}>
-                {item.label}
-              </Link>
+              {item.admin ? (
+                <AdminContainer>
+                  <Link className="nav-link" to={item.route}>
+                    {item.label}
+                  </Link>
+                </AdminContainer>
+              ) : (
+                <Link className="nav-link" to={item.route}>
+                  {item.label}
+                </Link>
+              )}
             </li>
           ))}
         </ul>

@@ -14,7 +14,7 @@ const fetchPenalties = () => (headers) => {
   });
 };
 
-const updatePenalty = (data) => (headers) => {
+const editPenalty = (data) => (headers) => {
   const { _id } = data;
   return fetch(`${process.env.REACT_APP_BASE_API}/penalties/${_id}`, {
     method: 'PATCH',
@@ -31,4 +31,4 @@ const deletePenalty = (data) => (headers) => {
   });
 };
 
-export { createPenalty, fetchPenalties, updatePenalty, deletePenalty };
+export { createPenalty, fetchPenalties, editPenalty, deletePenalty };

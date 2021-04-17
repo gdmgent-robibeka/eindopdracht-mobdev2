@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router';
 import useAuthApi from '../../../../core/hooks/useAuthApi';
-import { updateSong } from '../../../../core/modules/songs/api';
+import { editSong } from '../../../../core/modules/songs/api';
 import { Routes } from '../../../../core/routing';
 import ErrorAlert from '../../../Shared/Alert/ErrorAlert';
 import Modal from '../../../Shared/Modal/Modal';
@@ -15,7 +15,7 @@ const EditSong = ({ song, onEdit, onClose }) => {
 
   const handleSubmit = (data) => {
     setIsLoading(true);
-    withAuth(updateSong(data))
+    withAuth(editSong(data))
       .then((data) => {
         onEdit(data);
         history.push(Routes.Songs.Index);
