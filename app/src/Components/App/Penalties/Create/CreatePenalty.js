@@ -26,7 +26,7 @@ const CreatePenalty = () => {
 
   return (
     <>
-      <h1>Voeg Ad Pistum toe</h1>
+      <h1>Add penalty</h1>
       <ErrorAlert error={error} />
       <PenaltyForm onSubmit={handleSubmit} disabled={isLoading} />
     </>

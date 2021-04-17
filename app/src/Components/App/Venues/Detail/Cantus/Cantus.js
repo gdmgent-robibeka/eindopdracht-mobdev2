@@ -20,7 +20,7 @@ const Cantus = () => {
         />
       </div>
 
-      <Button type="submit">Boek Cantus</Button>
+      <Button type="submit">Plan cantus</Button>
     </form>
   );
 };

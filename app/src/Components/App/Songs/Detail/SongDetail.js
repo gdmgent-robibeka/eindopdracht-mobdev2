@@ -1,14 +1,14 @@
 import ReactPlayer from 'react-player/soundcloud';
-import Button from '../../../../Design/Button';
-import Card from '../../../../Design/Card';
-import AdminContainer from '../../../../Shared/Admin/AdminContainer';
+import Button from '../../../Design/Button';
+import Card from '../../../Design/Card';
+import AdminContainer from '../../../Shared/Admin/AdminContainer';
 
 const SongDetail = ({ song, editSong }) => {
   return (
     <Card>
       <h5 className="card-title">
         {song.title}
-        {song.isOfficial ? ' - Officieel lied' : ''}
+        {song.isOfficial ? ' - Official song' : ''}
       </h5>
       <ReactPlayer
         url={song.source}
@@ -16,9 +16,9 @@ const SongDetail = ({ song, editSong }) => {
         height="200px"
         className="my-3"
       />
-      <p>Pagina in de codex: {song.codexPage}</p>
+      <p>Page in the codex: {song.codexPage}</p>
       <AdminContainer>
-        <Button onClick={() => editSong(song)}>Bewerk lied</Button>
+        <Button onClick={() => editSong(song)}>Edit song</Button>
       </AdminContainer>
     </Card>
   );

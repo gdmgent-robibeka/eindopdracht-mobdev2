@@ -30,7 +30,7 @@ const EditVenue = ({ onUpdate }) => {
 
   return (
     <>
-      <h1>Bewerk Cantuszaal</h1>
+      <h1>Edit Venue</h1>
       <ErrorAlert error={error} />
       <VenueForm
         onSubmit={handleSubmit}

@@ -27,7 +27,7 @@ const EditPenalty = ({ penalty, onUpdate, onClose }) => {
   };
 
   return (
-    <Modal title="Bewerk Ad Pistum" onClose={onClose}>
+    <Modal title="Edit penalty" onClose={onClose}>
       <ErrorAlert error={error} />
       <PenaltyForm
         onSubmit={handleSubmit}

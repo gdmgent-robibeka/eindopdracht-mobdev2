@@ -6,7 +6,7 @@ const LogoutButton = () => {
 
   return (
     <Button color="outline-light" onClick={logout}>
-      Afmelden
+      Logout
     </Button>
   );
 };

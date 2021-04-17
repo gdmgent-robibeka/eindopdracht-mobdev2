@@ -27,7 +27,7 @@ const EditSong = ({ song, onUpdate, onClose }) => {
   };
 
   return (
-    <Modal title="Bewerk lied" onClose={onClose}>
+    <Modal title="Edit song" onClose={onClose}>
       <ErrorAlert error={error} />
       <SongForm
         onSubmit={handleSubmit}

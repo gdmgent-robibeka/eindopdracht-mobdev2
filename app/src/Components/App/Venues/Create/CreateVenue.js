@@ -26,7 +26,7 @@ const CreateVenue = () => {
 
   return (
     <>
-      <h1>Voeg Cantuszaal toe</h1>
+      <h1>Create venue</h1>
       <ErrorAlert error={error} />
       <VenueForm onSubmit={handleSubmit} disabled={isLoading} />
     </>

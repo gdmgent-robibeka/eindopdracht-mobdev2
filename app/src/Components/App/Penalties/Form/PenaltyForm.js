@@ -65,7 +65,7 @@ const PenaltyForm = ({ onSubmit, initialData = {}, disabled }) => {
         name="penaltyName"
         value={data.penaltyName}
         id="penaltyName"
-        label="Naam"
+        label="Name"
         onChange={handleChange}
         error={errors.penaltyName}
         disabled={disabled}
@@ -76,7 +76,7 @@ const PenaltyForm = ({ onSubmit, initialData = {}, disabled }) => {
         name="difficulty"
         value={data.difficulty}
         id="difficulty"
-        label="Moeilijkheidsgraad"
+        label="Difficulty"
         onChange={handleChange}
         error={errors.difficulty}
         disabled={disabled}
@@ -87,14 +87,14 @@ const PenaltyForm = ({ onSubmit, initialData = {}, disabled }) => {
         name="description"
         value={data.description}
         id="description"
-        label="Beschrijving"
+        label="Description"
         onChange={handleChange}
         error={errors.description}
         disabled={disabled}
       />
 
       <Button type="submit" disabled={disabled}>
-        {data._id ? 'Bewerk' : 'Voeg toe'}
+        {data._id ? 'Edit' : 'Create'}
       </Button>
     </form>
   );

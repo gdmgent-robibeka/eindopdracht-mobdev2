@@ -31,15 +31,13 @@ const PenaltiesOverview = () => {
   }
   return (
     <>
-      <PageHeader title="Ad Pistums">
+      <PageHeader title="Penalties">
         <AdminContainer>
-          <LinkButton to={Routes.Penalties.Create}>
-            Voeg Ad Pistum toe
-          </LinkButton>
+          <LinkButton to={Routes.Penalties.Create}>Create penalty</LinkButton>
         </AdminContainer>
       </PageHeader>
 
-      <div className="d-flex flex-wrap mt-3 card-list">
+      <div className="d-flex flex-wrap justify-content-between mt-3 card-list">
         {penalties.map((penalty) => (
           <PenaltyDetail
             key={penalty._id}

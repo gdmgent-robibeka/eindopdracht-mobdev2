@@ -76,7 +76,7 @@ const SongForm = ({ onSubmit, initialData = {}, disabled }) => {
         name="title"
         value={data.title}
         id="title"
-        label="Titel"
+        label="Title"
         onChange={handleChange}
         error={errors.title}
         disabled={disabled}
@@ -98,7 +98,7 @@ const SongForm = ({ onSubmit, initialData = {}, disabled }) => {
         name="language"
         value={data.language}
         id="language"
-        label="Taal"
+        label="Language"
         onChange={handleChange}
         error={errors.language}
         disabled={disabled}
@@ -115,13 +115,13 @@ const SongForm = ({ onSubmit, initialData = {}, disabled }) => {
         disabled={disabled}
       /> */}
 
-      <label htmlFor="isOfficial">Officieel lied?</label>
+      <label htmlFor="isOfficial">Official song?</label>
       <input
         type="checkbox"
         name="isOfficial"
         value={data.isOfficial}
         id="isOfficial"
-        label="Officieel lied?"
+        label="Official song?"
         onChange={handleChange}
         error={errors.isOfficial}
         disabled={disabled}
@@ -132,14 +132,14 @@ const SongForm = ({ onSubmit, initialData = {}, disabled }) => {
         name="codexPage"
         value={data.codexPage}
         id="codexPage"
-        label="Pagina in de codex"
+        label="Page in the codex"
         onChange={handleChange}
         error={errors.codexPage}
         disabled={disabled}
       />
 
       <Button type="submit" disabled={disabled}>
-        {data._id ? 'Bewerk' : 'Voeg toe'}
+        {data._id ? 'Edit' : 'Create'}
       </Button>
     </form>
   );

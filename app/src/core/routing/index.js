@@ -12,13 +12,11 @@ const Routes = Object.freeze({
   },
   Songs: {
     Index: `${songs}`,
-    Detail: `${songs}/:id`,
     Edit: `${songs}/:id/edit`,
     Create: `${songs}/create`,
   },
   Penalties: {
     Index: `${penalties}`,
-    Detail: `${penalties}/:id`,
     Edit: `${penalties}/:id/edit`,
     Create: `${penalties}/create`,
   },

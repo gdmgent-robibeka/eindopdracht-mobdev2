@@ -5,7 +5,7 @@ class ApiError extends Error {
       this.message = `${e.statusCode} ${e.message}`;
       this.statusCode = e.statusCode;
     } else {
-      this.message = 'Er ging iets mis';
+      this.message = 'Something went wrong';
       this.statusCode = 500;
     }
   }

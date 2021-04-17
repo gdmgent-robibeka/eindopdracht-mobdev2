@@ -26,7 +26,7 @@ const CreateSong = () => {
 
   return (
     <>
-      <h1>Voeg Lied toe</h1>
+      <h1>Add song</h1>
       <ErrorAlert error={error} />
       <SongForm onSubmit={handleSubmit} disabled={isLoading} />
     </>

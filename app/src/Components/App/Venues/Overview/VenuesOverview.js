@@ -21,9 +21,9 @@ const VenuesOverview = () => {
 
   return (
     <>
-      <PageHeader title="Cantuszalen">
+      <PageHeader title="Venues">
         <AdminContainer>
-          <LinkButton to={Routes.Venues.Create}>Voeg cantuszaal toe</LinkButton>
+          <LinkButton to={Routes.Venues.Create}>Create venue</LinkButton>
         </AdminContainer>
       </PageHeader>
 

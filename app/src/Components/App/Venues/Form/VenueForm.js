@@ -67,7 +67,7 @@ const VenueForm = ({ onSubmit, initialData = {}, disabled }) => {
         name="venueName"
         value={data.venueName}
         id="venueName"
-        label="Naam"
+        label="Name"
         onChange={handleChange}
         error={errors.venueName}
         disabled={disabled}
@@ -78,7 +78,7 @@ const VenueForm = ({ onSubmit, initialData = {}, disabled }) => {
         name="address"
         value={data.address}
         id="address"
-        label="Adres"
+        label="Address"
         onChange={handleChange}
         error={errors.address}
         disabled={disabled}
@@ -89,7 +89,7 @@ const VenueForm = ({ onSubmit, initialData = {}, disabled }) => {
         name="city"
         value={data.city}
         id="city"
-        label="Stad"
+        label="City"
         onChange={handleChange}
         error={errors.city}
         disabled={disabled}
@@ -100,14 +100,14 @@ const VenueForm = ({ onSubmit, initialData = {}, disabled }) => {
         name="capacity"
         value={data.capacity}
         id="capacity"
-        label="Capaciteit"
+        label="Capacity"
         onChange={handleChange}
         error={errors.capacity}
         disabled={disabled}
       />
 
       <Button type="submit" disabled={disabled}>
-        {data._id ? 'Bewerk' : 'Voeg toe'}
+        {data._id ? 'Edit' : 'Create'}
       </Button>
     </form>
   );

@@ -4,7 +4,7 @@ import Spinner from '../../../Design/Spinner';
 import Alert from '../../../Design/Alert';
 import { fetchSongs } from '../../../../core/modules/songs/api';
 import { Routes } from '../../../../core/routing';
-import SongDetail from '../Detail/Detail/SongDetail';
+import SongDetail from '../Detail/SongDetail';
 import AdminContainer from '../../../Shared/Admin/AdminContainer';
 import EditSong from '../Edit/EditSong';
 import LinkButton from '../../../Shared/Button/LinkButton';
@@ -30,9 +30,9 @@ const SongsOverview = () => {
 
   return (
     <>
-      <PageHeader title="Liederen">
+      <PageHeader title="Songs">
         <AdminContainer>
-          <LinkButton to={Routes.Songs.Create}>Voeg lied toe</LinkButton>
+          <LinkButton to={Routes.Songs.Create}>Create song</LinkButton>
         </AdminContainer>
       </PageHeader>
 

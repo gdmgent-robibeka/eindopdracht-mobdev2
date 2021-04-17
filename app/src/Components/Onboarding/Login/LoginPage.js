@@ -17,7 +17,7 @@ let schema = yup.object().shape({
 });
 
 const LoginPage = ({ setUser }) => {
-  useTitle('Aanmelden');
+  useTitle('Login');
 
   const [data, setData] = useState({
     email: '',
@@ -75,13 +75,13 @@ const LoginPage = ({ setUser }) => {
               onSubmit={handleSubmit}
               noValidate={true}
             >
-              <h3 className="text-center">Aanmelden</h3>
+              <h3 className="text-center">Log in</h3>
               <div className="form-group">
                 <Input
                   id="email"
                   type="email"
                   name="email"
-                  label="E-mail"
+                  label="Email"
                   value={data.email}
                   error={errors.email}
                   onChange={handleChange}
@@ -93,7 +93,7 @@ const LoginPage = ({ setUser }) => {
                   id="password"
                   type="password"
                   name="password"
-                  label="Wachtwoord"
+                  label="Password"
                   value={data.password}
                   error={errors.password}
                   onChange={handleChange}
@@ -101,7 +101,7 @@ const LoginPage = ({ setUser }) => {
               </div>
               <div className="form-group">
                 <br />
-                <Button type="submit">Aanmelden</Button>
+                <Button type="submit">Log in</Button>
               </div>
             </form>
           </div>

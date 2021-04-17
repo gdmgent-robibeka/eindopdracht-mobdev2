@@ -7,7 +7,7 @@ import VenueDetailContainer from './Detail/VenueDetailContainer';
 import VenuesOverview from './Overview/VenuesOverview';
 
 const Venues = () => {
-  useTitle('Cantuszalen');
+  useTitle('Venues');
 
   return (
     <Switch>

@@ -12,7 +12,7 @@ const VenueDetail = () => {
       <PageHeader title={venue.venueName}>
         <AdminContainer>
           <LinkButton to={route(Routes.Venues.Edit, { id: venue._id })}>
-            Bewerk cantuszaal
+            Edit venue
           </LinkButton>
         </AdminContainer>
       </PageHeader>

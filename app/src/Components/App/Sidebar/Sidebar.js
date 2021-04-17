@@ -3,15 +3,15 @@ import { Routes } from '../../../core/routing';
 
 const items = [
   {
-    label: 'Cantuszalen',
+    label: 'Venues',
     route: Routes.Venues.Index,
   },
   {
-    label: 'Liederen',
+    label: 'Songs',
     route: Routes.Songs.Index,
   },
   {
-    label: 'Ad Pistums',
+    label: 'Penalties',
     route: Routes.Penalties.Index,
   },
 ];
