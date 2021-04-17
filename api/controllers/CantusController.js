@@ -47,28 +47,18 @@ class CantusController {
     }
   };
 
-  getCantusById = async (req, res, next) => {
+  updateCantusByVenue = async (req, res, next) => {
     try {
-      const { id } = req.params;
-      const cantus = await Cantus.findById(id).populate('venue').exec();
+      const { params } = req;
+      const { venueId, id } = params;
+
+      const cantus = await Cantus.findOne({ _id: id, venueId }).exec();
 
       if (cantus) {
-        res.status(200).json(cantus);
-      } else {
-        next(new NotFoundError());
-      }
-    } catch (e) {
-      next(e);
-    }
-  };
-
-  updateCantusById = async (req, res, next) => {
-    try {
-      const { id } = req.params;
-      const cantus = await Cantus.findById(id).exec();
-
-      if (cantus) {
-        cantus.overwrite(req.body);
+        cantus.overwrite({
+          ...log,
+          ...req.body,
+        });
         const c = await cantus.save();
         res.status(200).json(c);
       } else {

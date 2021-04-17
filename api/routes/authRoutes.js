@@ -34,17 +34,13 @@ authRouter.get(
   '/venues/:venueId/cantusses',
   cantusController.getCantussesByVenue
 );
-authRouter.get(
-  '/venues/:venueId/cantusses/:id',
-  cantusController.getCantusById
-);
 adminRouter.post(
   '/venues/:venueId/cantusses',
   cantusController.createCantusByVenue
 );
 adminRouter.patch(
   '/venues/:venueId/cantusses/:id',
-  cantusController.updateCantusById
+  cantusController.updateCantusByVenue
 );
 adminRouter.delete(
   '/venues/:venueId/cantusses/:id',

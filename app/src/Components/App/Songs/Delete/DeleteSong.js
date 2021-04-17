@@ -1,22 +1,18 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router';
 import useAuthApi from '../../../../core/hooks/useAuthApi';
 import { deleteSong } from '../../../../core/modules/songs/api';
-import { Routes } from '../../../../core/routing';
 import Button from '../../../Design/Button';
 import ErrorAlert from '../../../Shared/Alert/ErrorAlert';
 import Modal from '../../../Shared/Modal/Modal';
 
 const DeleteSong = ({ onClose, onDelete, song }) => {
   const withAuth = useAuthApi();
-  const history = useHistory();
   const [error, setError] = useState();
 
   const handleDelete = (data) => {
     withAuth(deleteSong(data))
       .then((data) => {
         onDelete(data);
-        history.push(Routes.Songs.Index);
       })
       .catch((err) => {
         setError(err);

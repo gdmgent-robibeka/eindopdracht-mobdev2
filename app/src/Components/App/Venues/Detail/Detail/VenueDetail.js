@@ -6,6 +6,7 @@ import PageHeader from '../../../../Shared/Header/PageHeader';
 import Button from '../../../../Design/Button';
 import { useState } from 'react';
 import DeleteVenue from './Delete/DeleteVenue';
+import CantussesOverview from '../Cantusses/Overview/CantussesOverview';
 
 const VenueDetail = ({ refresh }) => {
   const { venue } = useVenue();
@@ -33,6 +34,10 @@ const VenueDetail = ({ refresh }) => {
       </PageHeader>
 
       <p>{venue.fullAddress}</p>
+
+      <h2>Cantusses</h2>
+
+      <CantussesOverview venueId={venue._id} />
 
       {currentVenueDelete && (
         <DeleteVenue

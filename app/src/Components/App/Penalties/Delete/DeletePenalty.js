@@ -1,22 +1,18 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router';
 import useAuthApi from '../../../../core/hooks/useAuthApi';
 import { deletePenalty } from '../../../../core/modules/penalties/api';
-import { Routes } from '../../../../core/routing';
 import Button from '../../../Design/Button';
 import ErrorAlert from '../../../Shared/Alert/ErrorAlert';
 import Modal from '../../../Shared/Modal/Modal';
 
 const DeletePenalty = ({ penalty, onDelete, onClose }) => {
   const withAuth = useAuthApi();
-  const history = useHistory();
   const [error, setError] = useState();
 
   const handleDelete = (data) => {
     withAuth(deletePenalty(data))
       .then((data) => {
         onDelete(data);
-        history.push(Routes.Penalties.Index);
       })
       .catch((err) => {
         setError(err);
