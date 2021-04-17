@@ -7,18 +7,21 @@ import Spinner from '../../../Design/Spinner';
 import AdminContainer from '../../../Shared/Admin/AdminContainer';
 import LinkButton from '../../../Shared/Button/LinkButton';
 import PageHeader from '../../../Shared/Header/PageHeader';
+import DeletePenalty from '../Delete/DeletePenalty';
 import PenaltyDetail from '../Detail/PenaltyDetail';
 import EditPenalty from '../Edit/EditPenalty';
 
 const PenaltiesOverview = () => {
-  const [currentPenalty, setCurrentPenalty] = useState();
+  const [currentPenaltyEdit, setCurrentPenaltyEdit] = useState();
+  const [currentPenaltyDelete, setCurrentPenaltyDelete] = useState();
 
   const { data: penalties, error, refresh, isLoading } = useFetch(
     fetchPenalties
   );
 
-  const handlePenaltyUpdate = () => {
-    setCurrentPenalty(null);
+  const handlePenaltyEditOrDelete = () => {
+    setCurrentPenaltyEdit(null);
+    setCurrentPenaltyDelete(null);
     refresh();
   };
 
@@ -33,7 +36,9 @@ const PenaltiesOverview = () => {
     <>
       <PageHeader title="Penalties">
         <AdminContainer>
-          <LinkButton to={Routes.Penalties.Create}>Create penalty</LinkButton>
+          <LinkButton to={Routes.Penalties.Create} color="success">
+            Create penalty
+          </LinkButton>
         </AdminContainer>
       </PageHeader>
 
@@ -42,16 +47,25 @@ const PenaltiesOverview = () => {
           <PenaltyDetail
             key={penalty._id}
             penalty={penalty}
-            editPenalty={setCurrentPenalty}
+            editPenalty={setCurrentPenaltyEdit}
+            deletePenalty={setCurrentPenaltyDelete}
           />
         ))}
       </div>
 
-      {currentPenalty && (
+      {currentPenaltyEdit && (
         <EditPenalty
-          penalty={currentPenalty}
-          onUpdate={handlePenaltyUpdate}
-          onClose={() => setCurrentPenalty(null)}
+          penalty={currentPenaltyEdit}
+          onEdit={handlePenaltyEditOrDelete}
+          onClose={() => setCurrentPenaltyEdit(null)}
+        />
+      )}
+
+      {currentPenaltyDelete && (
+        <DeletePenalty
+          penalty={currentPenaltyDelete}
+          onDelete={handlePenaltyEditOrDelete}
+          onClose={() => setCurrentPenaltyDelete(null)}
         />
       )}
     </>

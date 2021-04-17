@@ -25,10 +25,10 @@ Button.propTypes = {
     'primary',
     'secondary',
     'danger',
-    'light',
+    'success',
     'outline-light',
   ]),
-  type: PropTypes.oneOf(['button', 'reset', 'submit']),
+  type: PropTypes.oneOf(['button', 'submit']),
   disabled: PropTypes.bool,
 };
 

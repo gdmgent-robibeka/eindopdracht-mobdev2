@@ -18,7 +18,7 @@ const VenueDetailContainer = () => {
     return fetchVenueById(id);
   }, [id]);
 
-  const { data: venue, setData, error, isLoading } = useFetch(apiCall);
+  const { data: venue, setData, error, refresh, isLoading } = useFetch(apiCall);
 
   if (isLoading) {
     return <Spinner />;
@@ -35,7 +35,7 @@ const VenueDetailContainer = () => {
           <EditVenue onUpdate={(data) => setData(data)} />
         </AdminRoute>
         <Route path={Routes.Venues.Detail}>
-          <VenueDetail />
+          <VenueDetail refresh={refresh} />
         </Route>
         <Redirect to={Routes.Venues.Index} />
       </Switch>

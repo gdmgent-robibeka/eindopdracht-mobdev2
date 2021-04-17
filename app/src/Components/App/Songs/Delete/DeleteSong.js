@@ -1,41 +1,40 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router';
 import useAuthApi from '../../../../core/hooks/useAuthApi';
-import { updateSong } from '../../../../core/modules/songs/api';
+import { deleteSong } from '../../../../core/modules/songs/api';
 import { Routes } from '../../../../core/routing';
+import Button from '../../../Design/Button';
 import ErrorAlert from '../../../Shared/Alert/ErrorAlert';
 import Modal from '../../../Shared/Modal/Modal';
-import SongForm from '../Form/SongForm';
 
-const EditSong = ({ song, onEdit, onClose }) => {
+const DeleteSong = ({ onClose, onDelete, song }) => {
   const withAuth = useAuthApi();
   const history = useHistory();
-  const [isLoading, setIsLoading] = useState();
   const [error, setError] = useState();
 
-  const handleSubmit = (data) => {
-    setIsLoading(true);
-    withAuth(updateSong(data))
+  const handleDelete = (data) => {
+    withAuth(deleteSong(data))
       .then((data) => {
-        onEdit(data);
+        onDelete(data);
         history.push(Routes.Songs.Index);
       })
       .catch((err) => {
         setError(err);
-        setIsLoading(true);
       });
   };
 
   return (
-    <Modal title="Edit song" onClose={onClose}>
+    <Modal title="Delete song" onClose={onClose}>
       <ErrorAlert error={error} />
-      <SongForm
-        onSubmit={handleSubmit}
-        initialData={song}
-        disabled={isLoading}
-      />
+      <h5 className="mb-4">Are you sure you want to delete this song?</h5>
+      <Button onClick={() => handleDelete(song)} color="danger">
+        Delete
+      </Button>
+      <Button onClick={onClose} color="secondary">
+        Cancel
+      </Button>
     </Modal>
   );
 };
 
-export default EditSong;
+export default DeleteSong;

@@ -138,7 +138,11 @@ const SongForm = ({ onSubmit, initialData = {}, disabled }) => {
         disabled={disabled}
       />
 
-      <Button type="submit" disabled={disabled}>
+      <Button
+        type="submit"
+        disabled={disabled}
+        color={data._id ? 'primary' : 'success'}
+      >
         {data._id ? 'Edit' : 'Create'}
       </Button>
     </form>

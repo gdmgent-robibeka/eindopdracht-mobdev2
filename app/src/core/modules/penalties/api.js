@@ -14,12 +14,6 @@ const fetchPenalties = () => (headers) => {
   });
 };
 
-const fetchPenaltyById = (id) => (headers) => {
-  return fetch(`${process.env.REACT_APP_BASE_API}/penalties/${id}`, {
-    headers: createHeaders(headers),
-  });
-};
-
 const updatePenalty = (data) => (headers) => {
   const { _id } = data;
   return fetch(`${process.env.REACT_APP_BASE_API}/penalties/${_id}`, {
@@ -29,4 +23,12 @@ const updatePenalty = (data) => (headers) => {
   });
 };
 
-export { createPenalty, fetchPenalties, fetchPenaltyById, updatePenalty };
+const deletePenalty = (data) => (headers) => {
+  const { _id } = data;
+  return fetch(`${process.env.REACT_APP_BASE_API}/penalties/${_id}`, {
+    method: 'DELETE',
+    headers: createHeaders(headers),
+  });
+};
+
+export { createPenalty, fetchPenalties, updatePenalty, deletePenalty };

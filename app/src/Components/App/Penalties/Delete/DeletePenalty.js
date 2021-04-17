@@ -1,41 +1,40 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router';
 import useAuthApi from '../../../../core/hooks/useAuthApi';
-import { updatePenalty } from '../../../../core/modules/penalties/api';
+import { deletePenalty } from '../../../../core/modules/penalties/api';
 import { Routes } from '../../../../core/routing';
+import Button from '../../../Design/Button';
 import ErrorAlert from '../../../Shared/Alert/ErrorAlert';
 import Modal from '../../../Shared/Modal/Modal';
-import PenaltyForm from '../Form/PenaltyForm';
 
-const EditPenalty = ({ penalty, onEdit, onClose }) => {
+const DeletePenalty = ({ penalty, onDelete, onClose }) => {
   const withAuth = useAuthApi();
   const history = useHistory();
-  const [isLoading, setIsLoading] = useState();
   const [error, setError] = useState();
 
-  const handleSubmit = (data) => {
-    setIsLoading(true);
-    withAuth(updatePenalty(data))
+  const handleDelete = (data) => {
+    withAuth(deletePenalty(data))
       .then((data) => {
-        onEdit(data);
+        onDelete(data);
         history.push(Routes.Penalties.Index);
       })
       .catch((err) => {
         setError(err);
-        setIsLoading(true);
       });
   };
 
   return (
-    <Modal title="Edit penalty" onClose={onClose}>
+    <Modal title="Delete penalty" onClose={onClose}>
       <ErrorAlert error={error} />
-      <PenaltyForm
-        onSubmit={handleSubmit}
-        initialData={penalty}
-        disabled={isLoading}
-      />
+      <h5 className="mb-4">Are you sure you want to delete this penalty?</h5>
+      <Button onClick={() => handleDelete(penalty)} color="danger">
+        Delete
+      </Button>
+      <Button onClick={onClose} color="secondary">
+        Cancel
+      </Button>
     </Modal>
   );
 };
 
-export default EditPenalty;
+export default DeletePenalty;

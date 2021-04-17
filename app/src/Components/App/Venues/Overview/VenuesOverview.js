@@ -23,7 +23,9 @@ const VenuesOverview = () => {
     <>
       <PageHeader title="Venues">
         <AdminContainer>
-          <LinkButton to={Routes.Venues.Create}>Create venue</LinkButton>
+          <LinkButton to={Routes.Venues.Create} color="success">
+            Create venue
+          </LinkButton>
         </AdminContainer>
       </PageHeader>
 

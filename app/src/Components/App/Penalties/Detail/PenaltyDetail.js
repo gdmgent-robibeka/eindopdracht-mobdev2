@@ -3,7 +3,7 @@ import Card from '../../../Design/Card';
 import AdminContainer from '../../../Shared/Admin/AdminContainer';
 import Styles from './PenaltyDetail.module.scss';
 
-const PenaltyDetail = ({ penalty, editPenalty }) => {
+const PenaltyDetail = ({ penalty, editPenalty, deletePenalty }) => {
   return (
     <Card id={Styles['card-container']}>
       <h5 className="card-title">{penalty.penaltyName}</h5>
@@ -12,6 +12,11 @@ const PenaltyDetail = ({ penalty, editPenalty }) => {
 
       <AdminContainer>
         <Button onClick={() => editPenalty(penalty)}>Edit penalty</Button>
+      </AdminContainer>
+      <AdminContainer>
+        <Button onClick={() => deletePenalty(penalty)} color="danger">
+          Delete
+        </Button>
       </AdminContainer>
     </Card>
   );

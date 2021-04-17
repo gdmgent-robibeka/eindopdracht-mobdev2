@@ -29,4 +29,12 @@ const updateVenue = (data) => (headers) => {
   });
 };
 
-export { createVenue, fetchVenues, fetchVenueById, updateVenue };
+const deleteVenue = (data) => (headers) => {
+  const { _id } = data;
+  return fetch(`${process.env.REACT_APP_BASE_API}/venues/${_id}`, {
+    method: 'DELETE',
+    headers: createHeaders(headers),
+  });
+};
+
+export { createVenue, fetchVenues, fetchVenueById, updateVenue, deleteVenue };

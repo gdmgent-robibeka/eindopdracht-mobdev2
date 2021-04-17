@@ -14,12 +14,6 @@ const fetchSongs = () => (headers) => {
   });
 };
 
-const fetchSongById = (id) => (headers) => {
-  return fetch(`${process.env.REACT_APP_BASE_API}/songs/${id}`, {
-    headers: createHeaders(headers),
-  });
-};
-
 const updateSong = (data) => (headers) => {
   const { _id } = data;
   return fetch(`${process.env.REACT_APP_BASE_API}/songs/${_id}`, {
@@ -29,4 +23,12 @@ const updateSong = (data) => (headers) => {
   });
 };
 
-export { fetchSongs, createSong, fetchSongById, updateSong };
+const deleteSong = (data) => (headers) => {
+  const { _id } = data;
+  return fetch(`${process.env.REACT_APP_BASE_API}/songs/${_id}`, {
+    method: 'DELETE',
+    headers: createHeaders(headers),
+  });
+};
+
+export { fetchSongs, createSong, updateSong, deleteSong };

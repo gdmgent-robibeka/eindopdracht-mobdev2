@@ -47,7 +47,7 @@ const LoginPage = ({ setUser }) => {
           .catch((err) => {
             if (err instanceof ApiError) {
               if (err.isUnauthorized()) {
-                setError(new AppError('Verkeerde combinatie'));
+                setError(new AppError('Wrong combination'));
               } else {
                 setError(err);
               }

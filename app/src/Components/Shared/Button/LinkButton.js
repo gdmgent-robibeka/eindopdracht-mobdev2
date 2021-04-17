@@ -14,7 +14,7 @@ LinkButton.propTypes = {
     'primary',
     'secondary',
     'danger',
-    'light',
+    'success',
     'outline-light',
   ]),
 };

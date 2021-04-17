@@ -5,7 +5,9 @@ const ErrorAlert = ({ error }) => {
     return null;
   }
 
-  return <Alert color="danger">{error.message || 'Er ging iets fout'}</Alert>;
+  return (
+    <Alert color="danger">{error.message || 'Something went wrong'}</Alert>
+  );
 };
 
 export default ErrorAlert;
