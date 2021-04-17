@@ -8,20 +8,21 @@ import RoleSelect from '../Select/RoleSelect';
 const schema = yup.object().shape({
   userName: yup.string().required(),
   email: yup.string().required(),
+  password: yup.string().required(),
   role: yup.string().required().nullable(),
 });
 
 const defaultData = {
   userName: '',
   email: '',
+  password: '',
   role: null,
 };
 
-const UserForm = ({ onSubmit, initialData = {}, disabled }) => {
+const CreateUserForm = ({ onSubmit, disabled }) => {
   const [isTouched, setIsTouched] = useState();
   const [data, setData] = useState({
     ...defaultData,
-    ...initialData,
   });
   const [errors, setErrors] = useState({});
 
@@ -104,4 +105,4 @@ const UserForm = ({ onSubmit, initialData = {}, disabled }) => {
   );
 };
 
-export default UserForm;
+export default CreateUserForm;

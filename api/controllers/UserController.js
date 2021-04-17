@@ -46,15 +46,17 @@ class UserController {
 
   updateUserById = async (req, res, next) => {
     try {
+      const { user } = req;
       const { id } = req.params;
-      const user = await User.findById(id).exec();
+      const updatedUser = await User.findById(id).exec();
 
-      if (user) {
-        user.overwrite({
+      if (updatedUser) {
+        updatedUser.overwrite({
           ...req.body,
-          password: user.password,
+          password: updatedUser.password,
+          ...(!user.isAdmin() ? { role: ROLES.user } : {}),
         });
-        const u = await user.save();
+        const u = await updatedUser.save();
         res.status(200).json(u);
       } else {
         next(new NotFoundError());

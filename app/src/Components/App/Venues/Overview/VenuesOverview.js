@@ -7,6 +7,7 @@ import { fetchVenues } from '../../../../core/modules/venues/api';
 import AdminContainer from '../../../Shared/Admin/AdminContainer';
 import PageHeader from '../../../Shared/Header/PageHeader';
 import LinkButton from '../../../Shared/Button/LinkButton';
+import Card from '../../../Design/Card';
 
 const VenuesOverview = () => {
   const { data: venues, error, isLoading } = useFetch(fetchVenues);
@@ -29,15 +30,19 @@ const VenuesOverview = () => {
         </AdminContainer>
       </PageHeader>
 
-      <ul>
+      <div className="d-flex flex-wrap justify-content-between mt-3 card-list">
         {venues.map((venue) => (
-          <li key={venue._id}>
-            <Link to={route(Routes.Venues.Detail, { id: venue._id })}>
-              {venue.venueName}
-            </Link>
-          </li>
+          <Link
+            to={route(Routes.Venues.Detail, { id: venue._id })}
+            key={venue._id}
+          >
+            <Card id="card-box">
+              <h4>{venue.venueName}</h4>
+              <p>{venue.fullAddress}</p>
+            </Card>
+          </Link>
         ))}
-      </ul>
+      </div>
     </>
   );
 };

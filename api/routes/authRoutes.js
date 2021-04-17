@@ -18,7 +18,6 @@ const adminRouter = express.Router();
 
 // Songs
 authRouter.get('/songs', songController.getSongs);
-//authRouter.get('/songs/:id', songController.getSongById);
 adminRouter.post('/songs', songController.createSong);
 adminRouter.patch('/songs/:id', songController.updateSongById);
 adminRouter.delete('/songs/:id', songController.deleteSongById);
@@ -31,15 +30,29 @@ adminRouter.patch('/venues/:id', venueController.updateVenueById);
 adminRouter.delete('/venues/:id', venueController.deleteVenueById);
 
 // Cantusses
-authRouter.get('/cantus', cantusController.getCantusses);
-authRouter.get('/cantus/:id', cantusController.getCantusById);
-adminRouter.post('/cantus', cantusController.createCantus);
-adminRouter.patch('/cantus/:id', cantusController.updateCantusById);
-adminRouter.delete('/cantus/:id', cantusController.deleteCantusById);
+authRouter.get(
+  '/venues/:venueId/cantusses',
+  cantusController.getCantussesByVenue
+);
+authRouter.get(
+  '/venues/:venueId/cantusses/:id',
+  cantusController.getCantusById
+);
+adminRouter.post(
+  '/venues/:venueId/cantusses',
+  cantusController.createCantusByVenue
+);
+adminRouter.patch(
+  '/venues/:venueId/cantusses/:id',
+  cantusController.updateCantusById
+);
+adminRouter.delete(
+  '/venues/:venueId/cantusses/:id',
+  cantusController.deleteCantusById
+);
 
 // Penalties
 authRouter.get('/penalties', penaltyController.getPenalties);
-authRouter.get('/penalties/:id', penaltyController.getPenaltyById);
 adminRouter.post('/penalties', penaltyController.createPenalty);
 adminRouter.patch('/penalties/:id', penaltyController.updatePenaltyById);
 adminRouter.delete('/penalties/:id', penaltyController.deletePenaltyById);

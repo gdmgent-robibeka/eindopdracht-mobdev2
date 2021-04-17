@@ -22,21 +22,6 @@ class PenaltyController {
     }
   };
 
-  getPenaltyById = async (req, res, next) => {
-    try {
-      const { id } = req.params;
-      const penalty = await Penalty.findById(id).exec();
-
-      if (penalty) {
-        res.status(200).json(penalty);
-      } else {
-        next(new NotFoundError());
-      }
-    } catch (e) {
-      next(e);
-    }
-  };
-
   updatePenaltyById = async (req, res, next) => {
     try {
       const { id } = req.params;

@@ -27,6 +27,10 @@ const userSchema = mongoose.Schema(
       enum: [ROLES.admin, ROLES.user],
       default: ROLES.user,
     },
+    createdAt: {
+      type: Date,
+      immutable: true,
+    },
   },
   {
     timestamps: true,
@@ -76,6 +80,9 @@ userSchema.methods = {
     return jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
       expiresIn: 60 * 120,
     });
+  },
+  isAdmin: function () {
+    return this.role === ROLES.admin;
   },
 };
 

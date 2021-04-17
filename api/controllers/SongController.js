@@ -15,32 +15,12 @@ class SongController {
 
   getSongs = async (req, res, next) => {
     try {
-      // if (req.query.title) {
-      //   //return res.send(req.query.title);
-      //   const songs = await Song.find({ title: req.query.title }).exec();
-      //   res.status(200).json(songs);
-      // }
       const songs = await Song.find().exec();
       res.status(200).json(songs);
     } catch (e) {
       next(e);
     }
   };
-
-  // getSongById = async (req, res, next) => {
-  //   try {
-  //     const { id } = req.params;
-  //     const song = await Song.findById(id).exec();
-
-  //     if (song) {
-  //       res.status(200).json(song);
-  //     } else {
-  //       next(new NotFoundError());
-  //     }
-  //   } catch (e) {
-  //     next(e);
-  //   }
-  // };
 
   updateSongById = async (req, res, next) => {
     try {
