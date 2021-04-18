@@ -4,7 +4,7 @@ import useAuthApi from '../../../../core/hooks/useAuthApi';
 import { createUser } from '../../../../core/modules/users/api';
 import { Routes } from '../../../../core/routing';
 import ErrorAlert from '../../../Shared/Alert/ErrorAlert';
-import UserForm from '../Form/UserForm';
+import CreateUserForm from './Form/CreateUserForm';
 
 const CreateUser = () => {
   const withAuth = useAuthApi();
@@ -28,7 +28,7 @@ const CreateUser = () => {
     <>
       <h1>Add user</h1>
       <ErrorAlert error={error} />
-      <UserForm onSubmit={handleSubmit} disabled={isLoading} />
+      <CreateUserForm onSubmit={handleSubmit} disabled={isLoading} />
     </>
   );
 };

@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import * as yup from 'yup';
-import { getValidationErrors } from '../../../../core/modules/utils/validation';
-import Button from '../../../Design/Button';
-import Input from '../../../Design/Input';
-import RoleSelect from '../Select/RoleSelect';
+import { getValidationErrors } from '../../../../../core/modules/utils/validation';
+import Button from '../../../../Design/Button';
+import Input from '../../../../Design/Input';
+import RoleSelect from '../../Select/RoleSelect';
 
 const schema = yup.object().shape({
   userName: yup.string().required(),
@@ -81,6 +81,17 @@ const CreateUserForm = ({ onSubmit, disabled }) => {
         label="Email"
         onChange={handleChange}
         error={errors.email}
+        disabled={disabled}
+      />
+
+      <Input
+        type="text"
+        name="password"
+        value={data.password}
+        id="password"
+        label="Password"
+        onChange={handleChange}
+        error={errors.password}
         disabled={disabled}
       />
 

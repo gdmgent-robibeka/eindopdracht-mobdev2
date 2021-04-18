@@ -11,7 +11,7 @@ const PenaltyDetail = ({ penalty, editPenalty, deletePenalty }) => {
       <p>{penalty.description}</p>
 
       <AdminContainer>
-        <Button onClick={() => editPenalty(penalty)}>Edit penalty</Button>
+        <Button onClick={() => editPenalty(penalty)}>Edit</Button>
       </AdminContainer>
       <AdminContainer>
         <Button onClick={() => deletePenalty(penalty)} color="danger">

@@ -23,7 +23,7 @@ const VenueDetail = ({ refresh }) => {
       <PageHeader title={venue.venueName}>
         <AdminContainer>
           <LinkButton to={route(Routes.Venues.Edit, { id: venue._id })}>
-            Edit venue
+            Edit
           </LinkButton>
           <AdminContainer>
             <Button color="danger" onClick={setCurrentVenueDelete}>
@@ -34,6 +34,7 @@ const VenueDetail = ({ refresh }) => {
       </PageHeader>
 
       <p>{venue.fullAddress}</p>
+      <p>Capacity: {venue.capacity}</p>
 
       <h2>Cantusses</h2>
 
