@@ -4,7 +4,12 @@ import * as yup from 'yup';
 import { getValidationErrors } from '../../../../../../core/modules/utils/validation';
 import Button from '../../../../../Design/Button';
 import Input from '../../../../../Design/Input';
-import { useVenue } from '../../VenueDetailContainer';
+
+const schema = yup.object().shape({
+  date: yup.string().required(),
+  studentUnion: yup.string().required(),
+  attendees: yup.number().required().positive().integer().min(1),
+});
 
 const defaultData = {
   date: format(new Date(), 'yyyy-MM-dd'),
@@ -13,20 +18,6 @@ const defaultData = {
 };
 
 const CantusForm = ({ onSubmit, initialData = {}, disabled }) => {
-  const { venue } = useVenue();
-
-  const schema = yup.object().shape({
-    date: yup.string().required(),
-    studentUnion: yup.string().required(),
-    attendees: yup
-      .number()
-      .required()
-      .positive()
-      .integer()
-      .max(venue.capacity)
-      .min(1),
-  });
-
   const [isTouched, setIsTouched] = useState();
   const [data, setData] = useState({
     ...defaultData,
