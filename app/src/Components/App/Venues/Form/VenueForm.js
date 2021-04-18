@@ -6,14 +6,16 @@ import { getValidationErrors } from '../../../../core/modules/utils/validation';
 
 const schema = yup.object().shape({
   venueName: yup.string().required(),
-  address: yup.string().required(),
+  street: yup.string().required(),
+  number: yup.number().required().positive().integer(),
   city: yup.string().required(),
   capacity: yup.number().required().positive().integer(),
 });
 
 const defaultData = {
   venueName: '',
-  address: '',
+  street: '',
+  number: '',
   city: '',
   capacity: '',
 };
@@ -75,12 +77,23 @@ const VenueForm = ({ onSubmit, initialData = {}, disabled }) => {
 
       <Input
         type="text"
-        name="address"
-        value={data.address}
-        id="address"
-        label="Address"
+        name="street"
+        value={data.street}
+        id="street"
+        label="Street"
         onChange={handleChange}
-        error={errors.address}
+        error={errors.street}
+        disabled={disabled}
+      />
+
+      <Input
+        type="number"
+        name="number"
+        value={data.number}
+        id="number"
+        label="Number"
+        onChange={handleChange}
+        error={errors.number}
         disabled={disabled}
       />
 

@@ -38,7 +38,9 @@ const VenuesOverview = () => {
           >
             <Card id="card-box">
               <h4>{venue.venueName}</h4>
+              <br />
               <p>{venue.fullAddress}</p>
+              <p>Capacity: {venue.capacity}</p>
             </Card>
           </Link>
         ))}

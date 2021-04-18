@@ -14,6 +14,10 @@ const cantusSchema = mongoose.Schema(
         return format(new Date(), 'yyyy-MM-dd');
       },
     },
+    attendees: {
+      type: Number,
+      required: true,
+    },
     venueId: {
       type: 'ObjectId',
       required: true,

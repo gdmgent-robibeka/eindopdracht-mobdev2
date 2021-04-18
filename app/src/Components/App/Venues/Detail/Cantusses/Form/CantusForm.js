@@ -1,32 +1,38 @@
 import { useCallback, useEffect, useState } from 'react';
+import { format } from 'date-fns';
 import * as yup from 'yup';
 import { getValidationErrors } from '../../../../../../core/modules/utils/validation';
 import Button from '../../../../../Design/Button';
 import Input from '../../../../../Design/Input';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import { registerLocale } from 'react-datepicker';
-import nlBE from 'date-fns/locale/nl-BE';
-registerLocale('nl-BE', nlBE);
-
-const schema = yup.object().shape({
-  date: yup.string().required(),
-  studentUnion: yup.string().required(),
-});
+import { useVenue } from '../../VenueDetailContainer';
 
 const defaultData = {
-  date: new Date(),
+  date: format(new Date(), 'yyyy-MM-dd'),
   studentUnion: '',
+  attendees: '',
 };
 
 const CantusForm = ({ onSubmit, initialData = {}, disabled }) => {
+  const { venue } = useVenue();
+
+  const schema = yup.object().shape({
+    date: yup.string().required(),
+    studentUnion: yup.string().required(),
+    attendees: yup
+      .number()
+      .required()
+      .positive()
+      .integer()
+      .max(venue.capacity)
+      .min(1),
+  });
+
   const [isTouched, setIsTouched] = useState();
   const [data, setData] = useState({
     ...defaultData,
     ...initialData,
   });
   const [errors, setErrors] = useState({});
-  const [startDate, setStartDate] = useState(new Date());
 
   const handleChange = (e) => {
     setData({
@@ -64,13 +70,7 @@ const CantusForm = ({ onSubmit, initialData = {}, disabled }) => {
 
   return (
     <form onSubmit={handleSubmit} noValidate={true}>
-      <DatePicker
-        selected={startDate}
-        onChange={(date) => setStartDate(date)}
-        locale={nlBE}
-      />
-
-      {/* <Input
+      <Input
         type="text"
         name="date"
         value={data.date}
@@ -79,7 +79,7 @@ const CantusForm = ({ onSubmit, initialData = {}, disabled }) => {
         onChange={handleChange}
         error={errors.date}
         disabled={disabled}
-      /> */}
+      />
 
       <Input
         type="text"
@@ -89,6 +89,17 @@ const CantusForm = ({ onSubmit, initialData = {}, disabled }) => {
         label="Student union"
         onChange={handleChange}
         error={errors.studentUnion}
+        disabled={disabled}
+      />
+
+      <Input
+        type="number"
+        name="attendees"
+        value={data.attendees}
+        id="attendees"
+        label="Attendees"
+        onChange={handleChange}
+        error={errors.attendees}
         disabled={disabled}
       />
 

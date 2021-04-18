@@ -1,18 +1,25 @@
 import { useState } from 'react';
 import useAuthApi from '../../../../../../core/hooks/useAuthApi';
-import { editCantusByVenue } from '../../../../../../core/modules/cantusses/api';
+import {
+  createCantusByVenue,
+  editCantusByVenue,
+} from '../../../../../../core/modules/cantusses/api';
 import ErrorAlert from '../../../../../Shared/Alert/ErrorAlert';
 import Modal from '../../../../../Shared/Modal/Modal';
 import CantusForm from '../Form/CantusForm';
 
-const EditCantus = ({ venueId, cantus, onEdit, onClose }) => {
+const CreateOrEditCantus = ({ venueId, cantus, onEdit, onClose }) => {
   const withAuth = useAuthApi();
   const [isLoading, setIsLoading] = useState();
   const [error, setError] = useState();
 
   const handleSubmit = (data) => {
     setIsLoading(true);
-    withAuth(editCantusByVenue(venueId, data))
+    withAuth(
+      data._id
+        ? editCantusByVenue(venueId, data)
+        : createCantusByVenue(venueId, data)
+    )
       .then((data) => {
         onEdit(data);
       })
@@ -23,7 +30,10 @@ const EditCantus = ({ venueId, cantus, onEdit, onClose }) => {
   };
 
   return (
-    <Modal title="Edit cantus" onClose={onClose}>
+    <Modal
+      title={cantus._id ? 'Edit cantus' : 'Create cantus'}
+      onClose={onClose}
+    >
       <ErrorAlert error={error} />
       <CantusForm
         onSubmit={handleSubmit}
@@ -34,4 +44,4 @@ const EditCantus = ({ venueId, cantus, onEdit, onClose }) => {
   );
 };
 
-export default EditCantus;
+export default CreateOrEditCantus;

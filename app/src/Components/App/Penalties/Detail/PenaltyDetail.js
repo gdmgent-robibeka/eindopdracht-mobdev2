@@ -6,7 +6,8 @@ const PenaltyDetail = ({ penalty, editPenalty, deletePenalty }) => {
   return (
     <Card id="card-box">
       <h5 className="card-title">{penalty.penaltyName}</h5>
-      <p>Difficulty: {penalty.difficulty}</p>
+      <br />
+      <p>Difficulty: {penalty.difficulty}/5</p>
       <p>{penalty.description}</p>
 
       <AdminContainer>

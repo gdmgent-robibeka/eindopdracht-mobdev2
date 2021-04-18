@@ -6,10 +6,12 @@ import Button from '../../../../../Design/Button';
 import Spinner from '../../../../../Design/Spinner';
 import ErrorAlert from '../../../../../Shared/Alert/ErrorAlert';
 import { format, parse } from 'date-fns';
-import EditCantus from '../Edit/EditCantus';
+import CreateOrEditCantus from '../Edit/CreateOrEditCantus';
+import AdminContainer from '../../../../../Shared/Admin/AdminContainer';
+import DeleteCantus from '../Delete/DeleteCantus';
 
 const CantussesOverview = ({ venueId }) => {
-  const [currentCantusEdit, setCurrentCantusEdit] = useState();
+  const [currentCantus, setCurrentCantus] = useState();
   const [currentCantusDelete, setCurrentCantusDelete] = useState();
 
   const fetchCantusses = useCallback(() => fetchCantussesByVenue(venueId), [
@@ -20,8 +22,12 @@ const CantussesOverview = ({ venueId }) => {
     fetchCantusses
   );
 
+  const handleCreateCantus = () => {
+    setCurrentCantus({});
+  };
+
   const handleCantusEditOrDelete = () => {
-    setCurrentCantusEdit(null);
+    setCurrentCantus(null);
     setCurrentCantusDelete(null);
     refresh();
   };
@@ -38,11 +44,16 @@ const CantussesOverview = ({ venueId }) => {
 
   return (
     <>
+      <Button onClick={() => handleCreateCantus()} color="success">
+        Create cantus
+      </Button>
+
       <table className="table table-striped">
         <thead>
           <tr>
             <th>Date</th>
             <th>Student Union</th>
+            <th>Attendees</th>
             {admin && <th>User</th>}
             <th></th>
             <th></th>
@@ -58,26 +69,43 @@ const CantussesOverview = ({ venueId }) => {
                 )}
               </td>
               <td>{cantus.studentUnion}</td>
+              <td>{cantus.attendees}</td>
               {admin && <td>{cantus.user?.userName}</td>}
               <td className="col-md-1">
-                <Button onClick={() => setCurrentCantusEdit(cantus)}>
-                  Edit
-                </Button>
+                <AdminContainer>
+                  <Button onClick={() => setCurrentCantus(cantus)}>Edit</Button>
+                </AdminContainer>
               </td>
               <td className="col-md-1">
-                <Button color="danger">Delete</Button>
+                <AdminContainer>
+                  <Button
+                    onClick={() => setCurrentCantusDelete(cantus)}
+                    color="danger"
+                  >
+                    Delete
+                  </Button>
+                </AdminContainer>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      {currentCantusEdit && (
-        <EditCantus
+      {currentCantus && (
+        <CreateOrEditCantus
           venueId={venueId}
-          cantus={currentCantusEdit}
+          cantus={currentCantus}
           onEdit={handleCantusEditOrDelete}
-          onClose={() => setCurrentCantusEdit(null)}
+          onClose={() => setCurrentCantus(null)}
+        />
+      )}
+
+      {currentCantusDelete && (
+        <DeleteCantus
+          venueId={venueId}
+          cantus={currentCantusDelete}
+          onDelete={handleCantusEditOrDelete}
+          onClose={() => setCurrentCantusDelete(null)}
         />
       )}
     </>

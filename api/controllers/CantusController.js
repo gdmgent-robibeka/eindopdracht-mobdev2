@@ -49,15 +49,16 @@ class CantusController {
 
   updateCantusByVenue = async (req, res, next) => {
     try {
-      const { params } = req;
-      const { venueId, id } = params;
-
-      const cantus = await Cantus.findOne({ _id: id, venueId }).exec();
+      const { user, params } = req;
+      const { id, venueId } = params;
+      const cantus = await Cantus.findById(id).exec();
 
       if (cantus) {
         cantus.overwrite({
-          ...log,
+          _id: id,
           ...req.body,
+          venueId,
+          userId: user._id,
         });
         const c = await cantus.save();
         res.status(200).json(c);
@@ -73,7 +74,7 @@ class CantusController {
     try {
       const { id } = req.params;
       const cantus = await Cantus.findById(id).exec();
-
+      console.log(cantus);
       if (cantus) {
         await cantus.remove();
         res.status(200).json({});

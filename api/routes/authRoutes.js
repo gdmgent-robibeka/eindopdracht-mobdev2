@@ -34,7 +34,7 @@ authRouter.get(
   '/venues/:venueId/cantusses',
   cantusController.getCantussesByVenue
 );
-adminRouter.post(
+authRouter.post(
   '/venues/:venueId/cantusses',
   cantusController.createCantusByVenue
 );
@@ -55,7 +55,7 @@ adminRouter.delete('/penalties/:id', penaltyController.deletePenaltyById);
 
 // Users
 adminRouter.get('/users', userController.getUsers);
-adminRouter.patch('/users/:id', userController.updateUserById);
+authRouter.patch('/users/:id', userController.updateUserById);
 adminRouter.delete('/users/:id', userController.deleteUserById);
 
 authRouter.use(withRole(ROLES.admin), adminRouter);

@@ -32,4 +32,20 @@ const editCantusByVenue = (venueId, data) => (headers) => {
   );
 };
 
-export { fetchCantussesByVenue, createCantusByVenue, editCantusByVenue };
+const deleteCantusByVenue = (venueId, data) => (headers) => {
+  const { _id } = data;
+  return fetch(
+    `${process.env.REACT_APP_BASE_API}/venues/${venueId}/cantusses/${_id}`,
+    {
+      method: 'DELETE',
+      headers: createHeaders(headers),
+    }
+  );
+};
+
+export {
+  fetchCantussesByVenue,
+  createCantusByVenue,
+  editCantusByVenue,
+  deleteCantusByVenue,
+};

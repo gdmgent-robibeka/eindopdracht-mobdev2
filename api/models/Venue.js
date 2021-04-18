@@ -7,7 +7,11 @@ const venueSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    address: {
+    street: {
+      type: String,
+      required: true,
+    },
+    number: {
       type: String,
       required: true,
     },
@@ -42,7 +46,7 @@ venueSchema.pre('remove', function () {
 
 venueSchema.virtual('fullAddress').get(function () {
   const venue = this;
-  return `${venue.address}, ${venue.city}`;
+  return `${venue.street} ${venue.number}, ${venue.city}`;
 });
 
 const Venue = mongoose.model('Venue', venueSchema);

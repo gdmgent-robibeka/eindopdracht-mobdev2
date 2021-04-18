@@ -11,6 +11,8 @@ const SongDetail = ({ song, editSong, deleteSong }) => {
         {song.isOfficial ? ' - Official song' : ''}
       </h5>
       <ReactPlayer url={song.source} width="525px" height="200px" />
+      <br />
+      <p>{song.language} Song</p>
       <p>Page in the codex: {song.codexPage}</p>
       <AdminContainer>
         <Button onClick={() => editSong(song)}>Edit</Button>
